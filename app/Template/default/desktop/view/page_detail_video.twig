@@ -1,0 +1,81 @@
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "NewsArticle",
+	"inLanguage":"tr-TR",
+	"headline": "{{content.content_title}}",
+	"description": "{{content.content_desc}}",
+	"datePublished": "{{content.content_time|date("Y-m-dTH:i")}}",
+	"dateModified": "{{content.change_time|date("Y-m-dTH:i")}}",
+	"mainEntityOfPage":{ "@type":"WebPage", "@id":"{{site_canonical}}" },
+	"image": { "@type": "ImageObject", "url": "{{content.content_image_url}}", "height": 800, "width": 800 },
+	"publisher": { "@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": { "@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60 } },
+	"author": { "@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": { "@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60 } }
+}
+</script>
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_VIDEO}}", "name": "{{page_name.205}}" } },
+		{ "@type": "ListItem", "position": 3, "item": { "@id": "{{site_canonical}}", "name": "{{content.content_title}}" } }
+	]
+}
+</script>
+
+{% include 'block/block_reklam.twig' with {type : 'define_cat', cat_slug:cat_url_slug[content.content_cat] }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead', cat_slug:cat_url_slug[content.content_cat] }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin', cat_slug:cat_url_slug[content.content_cat]}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sol1', cat_slug:cat_url_slug[content.content_cat]}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sag1', cat_slug:cat_url_slug[content.content_cat]}%}
+
+<main class="col-12 main-detail-gallery-container">
+	<div class="col-8 detail-gallery-container">
+		<article>
+			{% if content.content_title_outside != '' %}
+				<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+			{% endif %}
+			<h1 class="detail-gallery-title">
+				{{content.content_title}}
+				{% if admin == 1 %}
+					<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+				{% endif %}
+			</h1>
+			<div class="detail-location">
+				{% if admin == 1 %}
+					<span class="dct"><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</span>
+				{% endif %}
+				<span class="dct"><a href="{{LINK_VIDEO}}"> <i class="icon">&#xe803;</i> {{page_name[205]}} </a></span>
+				<span><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y H:i")}}</time></span>
+			</div>
+			<div class="detail-image-content">
+				<figure class="detail-image">
+					<iframe
+						width="630"
+						height="370"
+						src="{{content.content_redirect}}"
+						allowfullscreen>
+					</iframe>
+				</figure>
+			</div>
+
+			<h2 class="detail-gallery-desc">{{content.content_desc|raw}}</h2>
+
+			{% include 'block/block_detail_share.twig' %}
+
+			<div style="clear:both"></div>
+
+			{% include 'block/block_reklam.twig' with {type : 'cat_sayfa_alti', cat_slug:cat_url_slug[content.content_cat] }%}
+			{% include 'block/block_detail_comment.twig' with {style:'display:block'} %}
+
+		</article>
+	</div>
+	<aside class="col-4">
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_2', cat_slug:cat_url_slug[content.content_cat] }%}
+		{% include 'block/block_aside_onecikanlar.twig' %}
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_3', cat_slug:cat_url_slug[content.content_cat] }%}
+	</aside>
+</main>

@@ -1,0 +1,37 @@
+{% include 'block/block_reklam.twig' with {type : 'cat_manset_alti' }%}
+
+{% include 'block/block_detail_author.twig' %}
+
+<div class="mobile-detail-container">
+	<div class="detail-content">
+		{% if content.content_title_outside != '' %}
+			<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+		{% endif %}
+		<h1 class="detail-content-title">
+			{{content.content_title}}
+			{% if admin == 1 %}
+				<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+		</h1>
+		<h2 class="detail-content-desc hideMe">
+			{{content.content_desc|raw}}
+		</h2>
+
+		<div class="detail-content-extra">
+			<ul>
+				<li><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y")}}</time></li>
+				<li><a href="{{cat_url[content.content_cat]}}" title="{{cat_name[content.content_cat]}}"><i class="icon">&#xf105;</i> {{cat_name[content.content_cat]}}</a> </li>
+				{% if admin == 1 %}
+					<li><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="detail-content-article">
+			{{content_with_smilar|raw}}
+		</div>
+		{% include 'block/block_reklam.twig' with {type : 'cat_detay' }%}
+		{% include 'block/block_detail_comment.twig' with {style:'display:block'} %}
+	</div>
+</div>
+
+{% include 'block/block_detail_loader.twig' %}

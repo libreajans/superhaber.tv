@@ -1,0 +1,39 @@
+<div class="detail-content-share">
+	<ul>
+		<li>
+			<a class="link-effect" rel="external nofollow"  title="Facebook'ta Paylaş"
+				href="http://www.facebook.com/sharer/sharer.php?u={{site_canonical}}&amp;title={{content.content_title|url_encode}}&amp;picture={{content.content_image_url|url_encode}}&amp;description={{content.content_desc|url_encode}}">
+				<i class="icon">&#xf09a;</i>
+			</a>
+		</li>
+		<li>
+			<a class="link-effect" rel="external nofollow"  title="Twitter'da Paylaş"
+				href="https://twitter.com/intent/tweet?hashtags={{social_media.twitter_tag}}&amp;original_referer={{site_canonical}}&amp;text={{content.content_title|url_encode}}&amp;tw_p=tweetbutton&amp;url={{site_canonical}}&amp;via={{social_media.twitter_name}}">
+				<i class="icon">&#xf099;</i>
+			</a>
+		</li>
+		<li>
+			<a class="link-effect" rel="external nofollow"  title="Google+'da Paylaş"
+				href="https://plus.google.com/share?url={{site_canonical}}">
+				<i class="icon">&#xf0d5;</i>
+			</a>
+		</li>
+		<li>
+			<a class="link-effect" rel="external nofollow"  title="WhastsApp'da Paylaş"
+				href="whatsapp://send?text={{content.content_url|url_encode}}" data-action="share/whatsapp/share">
+				<i class="icon">&#xf232;</i>
+			</a>
+		</li>
+		<li>
+			<a class="link-effect" rel="external nofollow"  title="E-posta İle Paylaş"
+				href="mailto:?subject={{content.content_title|url_encode}}&amp;body={{content.content_url|url_encode}}">
+				<i class="icon">&#xe801;</i> </a>
+		</li>
+
+		{% if listen == true %}
+		<li>
+			<button title="Haberi Dinle" class="play" id="hL_{{content.content_id}}" data-status="start"></button>
+		</li>
+		{% endif %}
+	</ul>
+</div>

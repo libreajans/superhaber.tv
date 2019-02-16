@@ -1,0 +1,31 @@
+<div class="mobile-news-line-wrapper">
+	<ul class="mobile-news-line-list">
+		{% for item in content_list %}
+			<li>
+				<a href="{{item.content_url}}">
+					<figure class="mobile-news-line-list-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="100" height="59"/>
+						<noscript>
+						<img
+							src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="100" height="59"/>
+						</noscript>
+					</figure>
+					<div class="mobile-news-line-list-category">
+						<span class="cat-{{item.content_cat}}">{{cat_name[item.content_cat]}}</span>
+					</div>
+					<div class="mobile-news-line-list-title">
+						{{item.content_title|raw}}
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% include 'block/block_reklam.twig' with {type:'mobile_detail'} %}

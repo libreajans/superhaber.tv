@@ -1,0 +1,43 @@
+<script>
+$(function(){
+	var author_slider = $(".author-list");
+	author_slider.owlCarousel({
+		items : 4,
+		loop:true,
+		autoplay:true,
+		autoplayTimeout:3000,
+		autoplayHoverPause:true
+	});
+
+	$('.author-next').click(function() { author_slider.trigger('next.owl.carousel'); });
+	$(".author-prev").click(function() { author_slider.trigger('prev.owl.carousel'); });
+});
+</script>
+
+<div class="author-container">
+	<ul class="author-list">
+		{% for item in content_list %}
+			<li>
+				<a target="_blank" rel="noopener noreferrer"
+					href="{{item.content_url}}"
+					title="{{item.content_title}}">
+					<figure class="author-list-image">
+						<img
+							src="{{item.author_image_url}}"
+							alt="{{item.author_name}}"
+							width="200" height="200"
+						/>
+					</figure>
+					<div class="author-list-name">
+						{{item.author_name}}
+					</div>
+					<div class="author-list-blog">
+						{{item.content_title|raw}}
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="author-prev"><i class="icon">&#xe828;</i></div>
+	<div class="author-next"><i class="icon">&#xe829;</i></div>
+</div>

@@ -1,0 +1,71 @@
+{%if pg < 2 %}
+<script>
+	$(document).ready(function()
+	{
+		//ilk sayfayı php ile yüklediğimiz için
+		//ikinci sayfadan yüklemeye başlıyoruz
+		var page_count		= 2;
+		var loading 		= false;
+		var total_page		= {{content_list_pages}};
+
+		$('#loadMore').click(function()
+		{
+			//load işleminde hata yoksa ve henüz toplam sayfa sayısına ulaşmamış isek
+			if(page_count <= total_page && loading==false)
+			{
+				//loading değerimizi true olarak düzenleyelim
+				loading = true;
+				$('#loadMore').html('<i class="icon">&#xe827;</i>');
+				//içerikleri getirelim
+				{%if type == "cat" %}
+					$.post('{{LINK_AJAX}}',{'type': "cat", 'id': "{{total_id}}", 'pg': page_count}, function(data)
+				{%endif %}
+				{%if type == "etiket" %}
+					$.post('{{LINK_AJAX}}',{'type': "etiket", 'key': "{{etiket}}", 'pg': page_count}, function(data)
+				{%endif %}
+				{%if type == "gallery" %}
+					$.post('{{LINK_AJAX}}',{'type': "gallery", 'id': {{id}}, 'pg': page_count}, function(data)
+				{%endif %}
+				{%if type == "video" %}
+					$.post('{{LINK_AJAX}}',{'type': "video", 'id': {{id}}, 'pg': page_count}, function(data)
+				{%endif %}
+				{
+					history.pushState(null, 'Title', '{{site_canonical}}/#'+page_count);
+
+					url = '{{site_canonical}}/#'+page_count;
+					url = url.replace(window.location.protocol + "//" + window.location.hostname, "");
+					ga('send', 'pageview', url);
+
+					//içerikleri ekleyelim
+					$("#results").append(data);
+					//sayfa sayısını artıralım
+					page_count++;
+					//loading değerini false olarak düzenleyelim
+					loading = false;
+					$('#loadMore').html('<i class="icon">&#xe827;</i>');
+
+					//lazy load yeniden ateşleyelim
+					$(window).on('ajaxComplete', function()
+					{
+						setTimeout(function()
+						{
+							$(window).lazyLoadXT();
+						}, 50);
+					});
+
+				}).fail(function(xhr, ajaxOptions, thrownError)
+				{
+					//hata var mı?
+					//HTTP error olarak dönelim
+					//alert(thrownError);
+					loading = false;
+				});
+			}
+			else
+			{
+				$('#loadMore').html('<i class="icon">&#xe805;</i>');
+			}
+		});
+	});
+</script>
+{%endif %}

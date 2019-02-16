@@ -1,0 +1,162 @@
+Host: www.superhaber.tv
+
+#rss yayınımız da sitemap sayılır
+Sitemap: http://www.superhaber.tv/feed.xml
+
+#varsayılan sitemaplar
+Sitemap: http://www.superhaber.tv/sitemap.xml
+Sitemap: http://www.superhaber.tv/sitemap_change.xml
+
+#içerik türlerine göre sitemaplar
+Sitemap: http://www.superhaber.tv/sitemap_haber.xml
+Sitemap: http://www.superhaber.tv/sitemap_galeri.xml
+Sitemap: http://www.superhaber.tv/sitemap_makale.xml
+
+#varsayılan sitemaplar + amp destekli
+Sitemap: http://www.superhaber.tv/sitemap_amp.xml
+Sitemap: http://www.superhaber.tv/sitemap_change_amp.xml
+
+#içerik türlerine göre sitemaplar + amp destekli
+Sitemap: http://www.superhaber.tv/sitemap_haber_amp.xml
+Sitemap: http://www.superhaber.tv/sitemap_galeri_amp.xml
+Sitemap: http://www.superhaber.tv/sitemap_makale_amp.xml
+
+#arama motorlarına göre özelleştirilmiş sitemaplar
+Sitemap: http://www.superhaber.tv/sitemap_yandex.xml
+Sitemap: http://www.superhaber.tv/sitemap_yandex_change.xml
+Sitemap: http://www.superhaber.tv/google-news-sitemap.xml
+
+
+User-agent: *
+Crawl-delay: 60
+Disallow: /
+Disallow: /etiket/
+Disallow: /arama/
+Disallow: /widget/
+Disallow: /sitene-ekle
+Disallow: /pageview/
+Disallow: /pageview*
+Disallow: /trap.php
+Disallow: /trap.php?url=*
+Disallow: /mraid
+
+#eski sitenin saçmalıkları
+Disallow: /181893412/
+Disallow: /images/
+Disallow: /apps/
+Disallow: /sites/
+Disallow: /cdn/
+
+Disallow: /sites/
+Disallow: /tky_iframe.php
+Disallow: /spor_iframe_1.php
+Disallow: /spor_iframe.php
+
+Disallow: /taxonomy/
+Disallow: /sites/
+Disallow: /tky_iframe.php
+Disallow: /spor_iframe_1.php
+Disallow: /spor_iframe.php
+
+#---- google botları ---------------
+
+User-agent: Googlebot
+Allow: /
+Allow: /etiket/
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Google-AMPHTML
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: FeedFetcher-Google
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+#---- yandex botları ---------------
+
+User-agent: YandexBot
+Allow: /
+Disallow: /etiket/
+
+User-agent: YandexImages
+Allow: /
+
+User-agent: YandexImageResizer
+Allow: /
+
+User-agent: YandexMobileBot
+Allow: /
+
+User-agent: YandexMetrika
+Allow: /
+
+User-agent: YandexVideoParser
+Allow: /
+
+User-agent: YandexAccessibilityBot
+Allow: /
+
+#---- çeşitli arama motorları ---------------
+
+User-agent: Slurp
+Allow: /
+Disallow: /etiket/
+
+User-agent: Yahoo! Slurp
+Allow: /
+Disallow: /etiket/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /etiket/
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /etiket/
+
+#---- seo botları ---------------
+
+User-agent: Alexabot
+Allow: /
+Disallow: /etiket/
+
+#---- sosyal medya botları ---------------
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /etiket/
+
+User-agent: Facebookexternalhit
+Allow: /
+Disallow: /etiket/
+
+User-agent: WhatsApp
+Allow: /
+Disallow: /etiket/
+
+User-agent: Applebot
+Allow: /
+Disallow: /etiket/
+
+User-agent: FeedlyBot
+Allow: /
+Disallow: /etiket/
+
+User-agent: Pinterestbot
+Allow: /
+Disallow: /etiket/
+
+

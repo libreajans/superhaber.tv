@@ -1,0 +1,22 @@
+<div class="surprise">
+	<ul class="surprise-list">
+		{% for item in content_list %}
+			<li>
+				<a target="_blank" rel="noopener noreferrer"
+					href="{{item.content_url}}"
+					title="{{item.content_title}}">
+					<figure class="surprise-list-image">
+						<img
+							src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="226" height="133"
+						/>
+					</figure>
+					<div class="surprise-list-title">
+						{{item.content_title|raw}}
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

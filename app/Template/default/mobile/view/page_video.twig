@@ -1,0 +1,81 @@
+{% include 'block/block_reklam.twig' with {type : 'define_mobile_index' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin' }%}
+<div class="mobile-slider">
+	<ul id="mobile-slider-list" class="mobile-slider-list">
+		{% for i in 0..5 %}
+			<li>
+				<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+					<figure class="mobile-slider-list-image">
+						<img
+								src="{{content_list[i].content_image_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="100%" height="auto"
+						/>
+					</figure>
+
+					<div class="mobile-slider-list-overlay">
+						<div class="mobile-slider-list-title">
+							{{content_list[i].content_title|raw}}
+						</div>
+						<div class="mobile-slider-list-icon">
+							<i class="icon">&#xe832;</i>
+						</div>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<ul id="mobile-slider-list-pagination" class="mobile-slider-list-pagination">
+		{% for key,i in 0..5 %}
+			<li>
+				<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+					{{key+1}}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% include 'block/block_reklam.twig' with {type : 'cat_manset_alti' }%}
+
+<div class="mobile-gallery">
+	<div class="mobile-area-title cat-120"> <i class="icon">&#xe832;</i> Videolar</div>
+	<div class="mobile-gallery-list">
+		<ul class="mobile-gallery-list" id="results">
+			{% for i in 6..(content_list|length)-1 %}
+				<li>
+					<a
+						href="{{content_list[i].content_url}}"
+						title="{{content_list[i].content_title}}">
+						<figure class="mobile-gallery-list-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{content_list[i].content_thumb_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="100%" height="195"/>
+							<noscript>
+							<img
+								src="{{content_list[i].content_thumb_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="100%" height="195"/>
+							</noscript>
+						</figure>
+						<div class="mobile-gallery-list-mask">
+							<div class="mobile-gallery-list-icon">
+								<i class="icon">&#xe832;</i>
+							</div>
+							<div class="mobile-gallery-list-title">
+								{{content_list[i].content_title|raw}}
+							</div>
+						</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<div class="loadMore" id="loadMore"><i class="icon">&#xe827;</i></div>
+{%include "ajax/ajax_page_load.twig" with {type:"video"}%}
+
+{% include 'block/block_reklam.twig' with {type : 'cat_footer_ustu' }%}

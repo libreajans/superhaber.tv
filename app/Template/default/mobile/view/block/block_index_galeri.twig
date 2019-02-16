@@ -1,0 +1,34 @@
+<div class="mobile-gallery">
+	<div class="mobile-area-title cat-{{p_color}}"> <a href="{{p_url}}" > <i class="icon">{{p_icon|raw}}</i>  {{p_title}}</a></div>
+	<ul class="mobile-gallery-list">
+		{% for item in content_list %}
+			<li>
+				<a
+					href="{{item.content_url}}"
+					title="{{item.content_title}}">
+					<figure class="mobile-gallery-list-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="100%" height="auto"/>
+						<noscript>
+						<img
+							src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="100%" height="auto"/>
+						</noscript>
+					</figure>
+					<div class="mobile-gallery-list-mask">
+						<div class="mobile-gallery-list-icon">
+							<i class="icon">{{p_icon|raw}}</i>
+						</div>
+						<div class="mobile-gallery-list-title">
+							{{item.content_title|raw}}
+						</div>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

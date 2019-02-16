@@ -1,0 +1,43 @@
+<div class="mobile-main-headline">
+	<ul class="mobile-main-headline-list" id="mobile-headline-slider">
+		{% for item in content_list %}
+			<li>
+				<a
+					href="{{item.content_url}}"
+					title="{{item.content_title}}">
+					<figure class="mobile-main-headline-list-image">
+						<img
+							src="{{item.content_image_manset_url}}"
+							alt="{{item.content_title}}"
+							width="100%" height="auto"
+						/>
+					</figure>
+					{% if item.content_manset_text_status == 1 %}
+						<div class="mobile-main-headline-list-title-mask">
+							{% if item.content_title_outside != '' %}
+								<div class="main-headline-slider-short-title">{{item.content_title_outside}}</div>
+							{% endif %}
+							<div class="mobile-main-headline-list-title">
+								{{item.content_title|raw}}
+							</div>
+						</div>
+					{% endif %}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="mobile-main-headline-pager">
+		<ul class="mobile-main-headline-pager-list" id="mobile-headline-pager">
+			{% for key, item in content_list %}
+			<li>
+				<a
+					href="{{item.content_url}}"
+					title="{{item.content_title}}">
+					{{key+1}}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+

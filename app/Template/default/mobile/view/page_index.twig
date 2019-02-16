@@ -1,0 +1,105 @@
+{% include 'block/block_reklam.twig' with {type:'define_mobile_index'} %}
+{% include 'block/block_reklam.twig' with {type:'anasayfa_masthead'} %}
+{% include 'block/block_reklam.twig' with {type:'anasayfa_pageskin'} %}
+
+{% include 'block/block_index_sondakika.twig' with {content_list:index_manset_sondakika} %}
+
+{% include 'block/block_index_anamanset.twig' with {content_list:index_manset_main} %}
+
+{% include 'block/block_index_surmanset.twig' with {content_list:index_manset_sur} %}
+
+{% include 'block/block_reklam.twig' with {type:'anasayfa_surmanset_alti'} %}
+
+{% include 'block/block_index_yazar.twig' with {content_list:author_list} %}
+
+{% include 'block/block_index_altmanset_bir.twig' with {content_list:index_manset_alt_bir} %}
+
+{% include 'block/block_index_altmanset_iki.twig' with {content_list:index_manset_alt_iki} %}
+
+{% include 'block/block_reklam.twig' with {type:'anasayfa_roportaj_ustu'} %}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	: index_block_roportaj,
+	p_title			: cat_name[114],
+	p_url			: cat_url[114],
+	p_color			: 'cat-114',
+}
+%}
+
+{% include 'block/block_index_galeri.twig' with
+{
+	content_list	: index_block_galeri,
+	p_title			: page_name[204],
+	p_url			: page_url[204],
+	p_icon			: '&#xe80a;',
+	p_color			: 'cat-120'
+}
+%}
+
+{% include 'block/block_reklam.twig' with {type:'anasayfa_galeri_alti'} %}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	:index_block_gundem,
+	p_title			: cat_name[100],
+	p_url			: cat_url[100],
+	p_color			: 'cat-101',
+}
+%}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	: index_block_spor,
+	p_title			: cat_name[101],
+	p_url			: cat_url[101],
+	p_color			: 'cat-102'
+}
+%}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	: index_block_magazin,
+	p_title			: cat_name[112],
+	p_url			: cat_url[112],
+	p_color			: 'cat-112',
+}
+%}
+
+{% include 'block/block_index_galeri.twig' with
+{
+	content_list	: index_block_video,
+	p_title			: page_name[205],
+	p_url			: page_url[205],
+	p_icon			: '&#xe80d;',
+	p_color			: 'cat-119',
+}
+%}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	: index_block_dunya,
+	p_title			: cat_name[104],
+	p_url			: cat_url[104],
+	p_color			: 'cat-104',
+}
+%}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	: index_block_teknoloji,
+	p_title			: cat_name[105],
+	p_url			: cat_url[105],
+	p_color			: 'cat-107',
+}
+%}
+
+{% include 'block/block_index_cat.twig' with
+{
+	content_list	: index_block_yasam,
+	p_title			: cat_name[102],
+	p_url			: cat_url[102],
+	p_color			: 'cat-102',
+}
+%}
+

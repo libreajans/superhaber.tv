@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<!--
+Yazılım: Elluga & Sabri Ünal
+Tasarım: Elluga
+Copyright: Elluga
+-->
+<html lang="tr">
+	<head>
+		<!-- Uyumluluk kipini kapatmaya zorla -->
+		<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"><![endif]-->
+		<!--[if IE 9]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"><![endif]-->
+		<!--[if IE 10]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"><![endif]-->
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+
+		{# Google Analitik Kodu #}
+		{# Online olmasak bile kimi fonksiyonlar için dev ortamında da bu değere ihtiyacım var #}
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-53462249-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+
+		{% if ST_ONLINE == 1 %}
+			{# Google Adsense Kodu #}
+			{# tek satır olursa kod calismiyor. #}
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({
+					google_ad_client: "ca-pub-7040620958739513",
+					enable_page_level_ads: true
+				});
+			</script>
+
+			{# Alexa Kodu #}
+			<script type="text/javascript">
+				_atrk_opts = { atrk_acct:"cAyVo1IWhd10uW", domain:"superhaber.tv",dynamic: true};
+				(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+			</script>
+			<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=cAyVo1IWhd10uW" style="display:none" height="1" width="1" alt=""/></noscript>
+		{% endif %}
+
+		<meta charset="UTF-8"/>
+		{% if sayfaadi == '404' %}
+			<meta name="robots" content="noindex, nofollow"/>
+		{% else %}
+			<meta name="robots" content="index, follow"/>
+		{% endif %}
+		<meta name="language" content="Turkish"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="apple-itunes-app" content="app-id=1204198607"/>
+		<meta name="google-play-app" content="com.elluga.superhabertv"/>
+
+
+		{#---[+]--- Facebook Open Graph API ---#}
+		<meta property="og:title" content="{{content_metatitle}}"/>
+		<meta property="og:image" content="{{content_metaimage}}"/>
+		<meta property="og:site_name" content="{{L.pIndex_Company}}"/>
+		<meta property="og:description" content="{{content_metadesc}}"/>
+		{#---[-]--- Facebook Open Graph API ---#}
+
+		{#---[+]--- Twitter API ---#}
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta name="twitter:site" content="@{{social_media.twitter_name}}"/>
+		<meta name="twitter:title" content="{{content_metatitle}}"/>
+		<meta name="twitter:description" content="{{content_metadesc}}"/>
+		<meta name="twitter:image:src" content="{{content_metaimage}}"/>
+		<meta name="twitter:url" content="{{site_canonical}}"/>
+		{#---[+]--- Twitter API ---#}
+
+		<meta name="keywords" content="{% if content_metatags != "" %}{{content_metatags}},{%endif%} {{site_keywords}}"/>
+		<meta name="description" content="{{content_metadesc}}"/>
+
+		{% if sayfaadi == 'index' %}
+			<meta http-equiv="refresh" content="300; url={{LINK_INDEX}}"/>
+		{% endif %}
+
+		{#---[+]--- Favicon ---#}
+		<link rel="dns-prefetch" href="http://cdn.superhaber.tv"/>
+		<link rel="dns-prefetch" href="http://cdn-video.superhaber.tv"/>
+		<link rel="shortcut icon" type="image/png" href="{{G_IMGLINK_APP}}favicon.png" sizes="32x32"/>
+		<link rel="canonical" href="{{site_canonical}}"/>
+		{% if
+			sayfaadi == 'detail_content' or
+			sayfaadi == 'detail_article' or
+			sayfaadi == 'detail_gallery' or
+			sayfaadi == 'xxxx' %}
+			<link rel="amphtml" href="{{site_canonical}}-amp"/>
+		{% endif %}
+		{#---[-]--- Favicon ---#}
+
+		{#---[+]--- RSS Linkleri ---#}
+		<link rel="alternate" type="application/rss+xml" title="{{L.pIndex_Company}} Feed" href="{{LINK_FEED}}"/>
+		{#---[-]--- RSS Linkleri ---#}
+
+		{#---[+]--- Mikrodata ---#}
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Organization",
+			"url": "{{LINK_INDEX}}",
+			"logo": "{{G_IMGLINK_APP}}logo_sh.png"
+		}
+		</script>
+
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			"name" : "{{L.pIndex_Company}}",
+			"alternateName" : "{{L.pIndex_CompanyLink}}",
+			"url": "{{LINK_INDEX}}",
+			"sameAs" : [ "{{social_media.facebook}}", "{{social_media.twitter}}", "{{social_media.google}}", "{{social_media.instagram}}", "{{social_media.youtube}}" ],
+			"potentialAction":
+			{
+				"@type": "SearchAction",
+				"target": "{{LINK_SEARCH}}/{search}",
+				"query-input": { "@type": "PropertyValueSpecification", "valueRequired": true, "valueMaxlength": 100, "valueName": "search" }
+			}
+		}
+		</script>
+		{#---[-]--- Mikrodata ---#}
+
+		<link rel="stylesheet" href="{{G_CSSLINK}}desktop_25.css"/>
+		<link rel="stylesheet" href="{{G_CSSLINK}}vendors/weatherIcons/css/weather-icons.min.css"/>
+
+		{% if
+			sayfaadi == 'index' or
+			sayfaadi == 'cat' or
+			sayfaadi == '404' or
+			sayfaadi == 'gallery' or
+			sayfaadi == 'video' or
+			sayfaadi == 'xxx'
+		%}
+			<link rel="stylesheet" href="{{G_CSSLINK}}vendors/owl.carousel.css"/>
+			<link rel="stylesheet" href="{{G_CSSLINK}}vendors/util.carousel.css"/>
+			<link rel="stylesheet" href="{{G_CSSLINK}}vendors/util.animate.css"/>
+		{% endif %}
+
+		{% if
+			sayfaadi == 'detail_content' or
+			sayfaadi == 'detail_video' or
+			sayfaadi == 'detail_gallery' or
+			sayfaadi == 'detail_article' or
+			sayfaadi == 'xxxx' %}
+			<link rel="stylesheet" href="{{G_CSSLINK}}vendors/jquery.jscrollpane.css"/>
+			<link rel="stylesheet" href="{{G_CSSLINK}}vendors/jquery.jscrollpane.lozenge.css"/>
+		{% endif %}
+
+		<script src="{{G_JSLINK}}vendors/jquery.min.js"></script>
+
+		<script src="{{G_JSLINK}}vendors/jquery.mousewheel.js"></script>
+		<script src="{{G_JSLINK}}vendors/jquery.lazyloadxt.min.js"></script>
+		<script src="{{G_JSLINK}}vendors/jquery.sticky.js"></script>
+		<script src="{{G_JSLINK}}vendors/modernizr.custom.30587.js"></script>
+		{% if
+		sayfaadi == 'detail_content' or
+		sayfaadi == 'detail_video' or
+		sayfaadi == 'detail_gallery' or
+		sayfaadi == 'detail_article' or
+		sayfaadi == 'xxxx' %}
+			<script src="{{G_JSLINK}}vendors/jquery.jscrollpane.min.js"></script>
+			<script src="{{G_JSLINK}}detail_11.js"></script>
+		{% endif %}
+		<script src="{{G_JSLINK}}main_11.js"></script>
+		{% if sayfaadi == 'cat' %}
+			<script src="{{G_JSLINK}}cat_11.js"></script>
+		{% endif %}
+
+		{% if sayfaadi == 'index' %}
+			<script src="{{G_JSLINK}}index_11.js"></script>
+		{% endif %}
+		{% if
+			sayfaadi == 'index' or
+			sayfaadi == 'cat' or
+			sayfaadi == '404' or
+			sayfaadi == 'gallery' or
+			sayfaadi == 'video' or
+			sayfaadi == 'xxx'
+		%}
+			<script src="{{G_JSLINK}}vendors/jquery.utilcarousel.min.js"></script>
+			<script src="{{G_JSLINK}}vendors/owl.carousel.min.js"></script>
+		{% endif %}
+
+		<title>{{site_title}}</title>
+		<style>
+			.lgtvpsbg
+			{
+				z-index: 0!important;
+			}
+		</style>
+	</head>
+	<body>
+		{% if
+			sayfaadi == 'detail_content' or
+			sayfaadi == 'detail_video' or
+			sayfaadi == 'detail_gallery' or
+			sayfaadi == 'detail_article' or
+			sayfaadi == 'xxxx' %}
+		{% else %}
+			<h1 class="hideMe">{{L.pIndex_Company}}</h1>
+			<h2 class="hideMe">{{L.pIndex_CompanyDesc}}</h2>
+		{% endif %}
+		{% if color != '' %}
+			<header class="{{color}}">
+		{% else %}
+			<header class="cat-101">
+		{% endif %}
+			<div class="header-top">
+				<div class="col-12">
+					<div class="col-2">
+						<div class="weather">
+							<div class="weather-icon" title="{{header_weather.aciklama}}">
+								<i class="wi {% if "now"|date("H") > 7 and "now"|date("H") < 20 %} wi-owm-day-{{header_weather.id}} {% else %} wi-owm-night-{{header_weather.id}} {% endif %} " style="color:white; font-size:15px; margin-top:3px; margin-left:5px;"></i>
+							</div>
+							<div class="weather-degree">{{header_weather.derece}}&#8451;</div>
+							<div class="weather-city">İstanbul</div>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="today"><i class="icon">&#xe82b;</i> {{date_day}} {{date_month}} {{date_year}}</div>
+					</div>
+					<div class="col-2">
+						<div class="social-media">
+							<ul>
+								<li> <a target="_blank" rel="external noopener noreferrer" title="Facebook" href="{{social_media.facebook}}"> <i class="icon">&#xf09a;</i> </a> </li>
+								<li> <a target="_blank" rel="external noopener noreferrer" title="Twitter" href="{{social_media.twitter}}"> <i class="icon">&#xf099;</i> </a> </li>
+								<li> <a target="_blank" rel="external noopener noreferrer" title="İnstagram" href="{{social_media.instagram}}"> <i class="icon">&#xf16d;</i> </a> </li>
+								<li> <a target="_blank" rel="external noopener noreferrer" title="Google+" href="{{social_media.google}}"> <i class="icon">&#xf0d5;</i> </a> </li>
+								<li> <a target="_blank" rel="noopener noreferrer" title="Feed" href="{{social_media.feed}}"> <i class="icon">&#xf09e;</i> </a> </li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="search">
+							<form action="{{LINK_SEARCH}}" method="post">
+								<input type="search" name="search" class="search-input" placeholder="Haber ara...">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% if color != '' %}
+				<nav class="{{color}}">
+			{% else %}
+				<nav class="cat-101">
+			{% endif %}
+				<div class="col-12">
+					<ul class="navigation-menu">
+						<li>
+							<a title="Ana Sayfa" href="{{LINK_INDEX}}" class="link-effect">
+								<img src="{{G_IMGLINK_APP}}logo.png" width="135" height="25" alt="{{L.pIndex_Company}}"/>
+							</a>
+						</li>
+						<li><a title="{{cat_name.100}}" href="{{cat_url.100}}" class="link-effect">{{cat_name.100}}</a></li>
+						<li><a title="{{cat_name.101}}" href="{{cat_url.101}}" class="link-effect">{{cat_name.101}}</a></li>
+						<li><a title="{{cat_name.112}}" href="{{cat_url.112}}" class="link-effect">{{cat_name.112}}</a></li>
+						<li><a title="{{cat_name.103}}" href="{{cat_url.103}}" class="link-effect">{{cat_name.103}}</a></li>
+						<li>
+							<a title="{{cat_name.107}}" href="{{cat_url.107}}" class="link-effect">
+								<span class="thy"><img src="{{G_IMGLINK_APP}}thy.png" width="20" height="20" alt="Thy"></span>
+								{{cat_name.107}}
+							</a>
+						</li>
+						<li><a title="{{page_name.203}}" href="{{page_url.203}}" class="link-effect">{{page_name.203}}</a></li>
+						<li class="gallery"><a title="{{page_name.204}}" href="{{page_url.204}}"><i class="icon">&#xe80a;</i> {{page_name.204}}</a></li>
+						<li class="video"><a target="_blank" rel="noopener noreferrer" title="{{page_name.205}}" href="{{page_url.205}}"><i class="icon">&#xe80d;</i> {{page_name.205}}</a></li>
+						<li id="open-drop" class="link-effect">
+							<div class="open-side-menu c-hamburger c-hamburger--htx">
+								<span></span>
+								<span></span>
+								<span></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="drop-down">
+					<ul class="col-12">
+						<li><a title="{{cat_name.102}}" href="{{cat_url.102}}">{{cat_name.102}}</a></li>
+						<li><a title="{{cat_name.104}}" href="{{cat_url.104}}">{{cat_name.104}}</a></li>
+						<li><a title="{{cat_name.105}}" href="{{cat_url.105}}">{{cat_name.105}}</a></li>
+						<li><a title="{{cat_name.106}}" href="{{cat_url.106}}">{{cat_name.106}}</a></li>
+						<li><a title="{{cat_name.108}}" href="{{cat_url.108}}">{{cat_name.108}}</a></li>
+						<li><a title="{{cat_name.109}}" href="{{cat_url.109}}">{{cat_name.109}}</a></li>
+						<li><a title="{{cat_name.110}}" href="{{cat_url.110}}">{{cat_name.110}}</a></li>
+						<li><a title="{{cat_name.111}}" href="{{cat_url.111}}">{{cat_name.111}}</a></li>
+						<li><a title="{{cat_name.113}}" href="{{cat_url.113}}">{{cat_name.113}}</a></li>
+						<li><a title="{{cat_name.114}}" href="{{cat_url.114}}">{{cat_name.114}}</a></li>
+						<li><a title="{{cat_name.115}}" href="{{cat_url.115}}">{{cat_name.115}}</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>

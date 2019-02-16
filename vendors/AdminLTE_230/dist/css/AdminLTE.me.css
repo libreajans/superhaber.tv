@@ -1,0 +1,44 @@
+.main-header .sidebar-toggle { font-family: unset !important; }
+.main-header .sidebar-toggle::before { content: unset !important; }
+.hideMe {display:none}
+.center {text-align:center}
+.right {text-align:right}
+.left {text-align:left}
+.clear {clear:both}
+.breadcrumb { background-color: #fff}
+/* .btn { padding:8px 10px; margin-top:-5px} */
+/* .nav-tabs-custom .btn {margin:5px 8px} */
+.box .box-body { padding-top:0px}
+.box .box-body-wp { border-radius: 0 0 3px 3px; padding: 10px}
+.clearMe { clear:both; padding-top:5px}
+.buttonArea { clear:both; border-top: 1px solid #eee; margin-top:10px; height:60px; padding:10px 5px; text-align:right}
+.box > .buttonArea, .nav-tabs-custom > .buttonArea{ clear:both; border-top: 1px solid #eee; height:60px; padding:5px 0px; text-align:right}
+.input-group { margin-top:5px}
+.input-group-addon { background: #f0f0f0 !important; min-width:150px; text-align:left}
+.input-group-addon i { width:15px}
+.ui-state-default, .ui-widget-content > .ui-state-default, .ui-widget-header > .ui-state-default { color:#fff !important; background-color:#3c8dbc !important; border:none !important; margin:2px 5px !important}
+div.mce-fullscreen { z-index: 20000 !important}
+.box-body-wp a { text-decoration:none; color:#ffffff}
+.table > tbody > tr > td { padding: 12px 5px 5px 5px}
+.table > tbody > tr:first-child td { border-top:1px solid #ddd}
+.table > tbody > tr:last-child td { border-bottom:1px solid #eee}
+table.dataTable thead th, table.dataTable thead td { border-bottom: unset}
+table.dataTable tfoot th, table.dataTable tfoot td { border-top: unset}
+table.dataTable.no-footer { border-bottom: 1px solid #eee}
+table.dataTable thead > tr > th {padding-right:27px !important}
+table.dataTable thead th, table.dataTable thead td {padding:7px}
+.dataTables_filter input { border: 1px solid #ddd; border-top-width: 1px; margin-left: 10px; padding: 3px 5px}
+.w100_btn {width:95%; text-align:left}
+
+/* içerik ekle, galerideki küçük resimler */
+.thumb { height: 75px; border: 1px solid #000; margin: 10px 5px 0 0}
+
+#sortable1 { margin-top: 20px !important; margin-right: 10px; width: 100%; min-height: 20px; list-style-type: none; padding: 5px 0 0 0; float: left}
+#sortable1 li { border:1px solid #eee; background-color:white; margin: 0 5px 5px 15px; padding: 10px; font-size: 1.2em; width: auto; margin-left:0px}
+
+.hr_ince_min {margin-top:0px; width:98%}
+.hr_ince {width:98%}
+.button_fill {width:98%}
+
+.ui-corner-all {margin-bottom:0px !important}
+.force_input {width:100% !important; resize:none !important; height:34px !important}

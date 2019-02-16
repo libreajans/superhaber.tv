@@ -1,0 +1,89 @@
+<script>
+	/**
+	Required: utilCarousel
+	*/
+
+	$(function()
+	{
+		/* ANA Manset Slider */
+		$('.main-headline-slider').utilCarousel(
+		{
+			breakPoints 	: [[1920, 1]],
+			mouseWheel		: false,
+			autoPlay		: true,
+			scrollPerPage	: true,
+			lazyLoad 		: false,
+			drag			: false,
+			touch			: false,
+			interval		: 15000,
+			showItems		: 1,
+			slideSpeed		: 1,
+			indexChanged : function(index)
+			{
+				$(".main-headline-image-pager-list li ").removeClass("active");
+				$(".main-headline-image-pager-list li:eq("+index+")").addClass("active");
+			}
+		});
+
+		$(".main-headline-image-pager-list li:eq(0)").addClass("active");
+		$('.main-headline-image-pager-list li').on('mouseout', function()  { $('.main-headline-slider').data('utilCarousel').play(); });
+		$('.main-headline-image-pager-list li').on('mouseover', function() { $('.main-headline-slider').data('utilCarousel').stop(); });
+
+		var main_slider = $('.main-headline-slider').data('utilCarousel');
+		$('.main-headline-prev').show();
+		$('.main-headline-next').show();
+		$('.main-headline-next').on('click', function() { main_slider.next(); });
+		$('.main-headline-prev').on('click', function() { main_slider.prev(); });
+	});
+
+	function goToLa(frmAti) { $('.main-headline-slider').data('utilCarousel').goTo(frmAti); }
+	function menuAlt(){ $("#sh-" + index  ).addClass("active"); }
+
+</script>
+
+<div class="headline-full-width">
+	<div class="headline-full-width-bg">
+		<div class="main-headline">
+			<ul class="main-headline-slider">
+				{% for item in content_list %}
+					<li>
+						<a target="_blank" rel="noopener noreferrer"
+						href="{{item.content_url}}"
+						title="{{item.content_title}}">
+							<figure class="main-headline-slider-image">
+								<img
+									src="{{item.content_image_manset_url}}"
+									alt="{{item.content_title}}"
+									width="959" height="436"
+								/>
+							</figure>
+							{% if item.content_manset_text_status == 1 %}
+								<div class="main-headline-slider-mask">
+									<div class="main-headline-slider-bottom">
+										{% if item.content_title_outside != '' %}
+											<div class="main-headline-slider-short-title">{{item.content_title_outside}}</div>
+										{% endif %}
+										<div class="main-headline-slider-long-title">
+											{{item.content_title|raw}}
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+			<div class="main-headline-prev"><i class="icon">&#xe828;</i></div>
+			<div class="main-headline-next"><i class="icon">&#xe829;</i></div>
+			<div class="main-headline-image-pager">
+				<ul class="main-headline-image-pager-list">
+					{% for key, item in content_list %}
+						<li id="sh-{{key}}" onmouseover="goToLa({{key}});">
+							<a target="_blank" rel="noopener noreferrer" href="{{item.content_url}}"><div class="main-headline-number">{{key+1}}</div></a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

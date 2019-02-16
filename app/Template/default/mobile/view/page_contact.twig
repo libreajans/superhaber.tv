@@ -1,0 +1,48 @@
+{% if islem_bilgisi != "" %}
+	<div class="contact-message cat-102 like_info">
+		<i class="icon">&#xe807;</i>
+		{{islem_bilgisi|raw}}
+	</div>
+{% endif %}
+<div class="page-container">
+	<div class="page-container">
+		<h3 class="page-title">
+			İletişim
+		</h3>
+		{% if commented != 1%}
+			<div class="contact-form">
+				<div class="contact-title">İletişim Formu</div>
+				<form method="post" action="{{LINK_CONTACT}}" name="form1" class="form1">
+					<input type="hidden" name="action" value="message"/>
+					<span>Ad Soyad: </span>
+					<span>
+						<input required type="text" name="contact_name" id="contact_name" placeholder="Adınız Soyadınız" class="contact-input" value="{{contact_name}}"/>
+					</span>
+					<span>E-posta : </span>
+					<span>
+						<input required type="email" name="contact_email" id="contact_email" placeholder="E-posta Adresiniz"  class="contact-input" value="{{contact_email}}"/>
+					</span>
+					<span>Mesaj : </span>
+					<span>
+						<textarea required placeholder="Mesajınız" name="contact_message" id="contact_message" class="text-input">{{contact_message|raw}}</textarea>
+					</span>
+					<span>
+						<button class="send-button" type="submit">Gönder</button>
+					</span>
+				</form>
+			</div>
+		{% endif %}
+		<div class="contact-info">
+			<div class="contact-title">İletişim Bilgileri</div>
+			<p>
+				<b>Adres : </b> {{L.pIletisim_ContactAddress|raw}}
+			</p>
+			<p>
+				<b>Tel :</b> {{L.pIletisim_ContactPhone}}
+			</p>
+			<p>
+				<b>E-Posta :</b> <a href="mailto:{{L.pIletisim_ContactMail}}">{{L.pIletisim_ContactMail}}</a>
+			</p>
+		</div>
+	</div>
+</div>

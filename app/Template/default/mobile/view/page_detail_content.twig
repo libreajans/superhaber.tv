@@ -1,0 +1,163 @@
+<script src='//code.responsivevoice.org/responsivevoice.js'></script>
+<script>
+	$(document).ready(function()
+	{
+		$('#hL_{{content.content_id}}').click(function()
+		{
+			console.log($(this).attr('data-status'));
+			var oku	= "{{content_with_voice}}";
+			if($(this).attr('data-status') == "start")
+			{
+				responsiveVoice.speak(oku, "Turkish Female", {onstart: function() {}, onend: function() {}});
+				$(this).removeClass("play");
+				$(this).addClass("pause");
+				$(this).attr('data-status','pause');
+			}
+			else
+			{
+				responsiveVoice.cancel();
+				$(this).removeClass("pause");
+				$(this).addClass("play");
+				$(this).attr('data-status','start');
+			}
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function()
+	{
+		var loading 		= false;
+
+		$(window).scroll(function()
+		{
+			var content_id 		= $('.his_item').last().attr('data-id');
+			var content_url		= $('.his_item').last().attr('data-url');
+			var content_title	= $('.his_item').last().attr('data-title');
+
+			//if ($(window).scrollTop() == $(document).height() - $(window).height() )
+			if($(document).height() - $(window).height() <= $(window).scrollTop() + 100 && content_id != 0 && loading==false)
+			{
+				//loading değerimizi true olarak düzenleyelim
+				loading = true;
+
+				//tüm reklamlar bir kapansın
+				$('.reklam').remove();
+
+				$.ajax(
+				{
+					type		: 'POST',
+					url			: '{{LINK_AJAX}}',
+					dataType	: 'html',
+					data		: {'type': 'infinity_content', 'id': content_id},
+					beforeSend	: function(html)
+					{
+						$('.his_item').not(':last').remove();
+					},
+					success		: function(html)
+					{
+						$('#results_'+content_id).replaceWith(html);
+						$(window).on('ajaxComplete', function()
+						{
+							setTimeout(function()
+							{
+								$(window).lazyLoadXT();
+								history.pushState(null, content_title, content_url);
+								document.title = content_title;
+								url = content_url;
+								url = url.replace(window.location.protocol + "//" + window.location.hostname, "");
+								ga('send', 'pageview', url);
+								twttr.widgets.load();
+								loading = false;
+							}, 10);
+						});
+					}
+				}).fail(function(xhr, ajaxOptions, thrownError)
+				{
+					//hata var mı?
+					//alert(thrownError);
+					loading = false;
+				});
+			}
+		});
+	});
+</script>
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "NewsArticle",
+	"inLanguage":"tr-TR",
+	"headline": "{{content.content_title}}",
+	"description": "{{content.content_desc}}",
+	"datePublished": "{{content.content_time|date("Y-m-dTH:i")}}",
+	"dateModified": "{{content.change_time|date("Y-m-dTH:i")}}",
+	"mainEntityOfPage":{ "@type":"WebPage", "@id":"{{site_canonical}}" },
+	"image": { "@type": "ImageObject", "url": "{{content.content_image_url}}", "height": 800, "width": 800 },
+	"publisher": { "@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": { "@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60 } },
+	"author": { "@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": { "@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60 } }
+}
+</script>
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa" } },
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{cat_url[content.content_cat]}}", "name": "{{cat_name[content.content_cat]}}" } },
+		{ "@type": "ListItem", "position": 3, "item": { "@id": "{{site_canonical}}", "name": "{{content.content_title}}" } }
+	]
+}
+</script>
+
+{% include 'block/block_reklam.twig' with {type : 'define_mobile_index' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin' }%}
+
+<div class="mobile-detail-container">
+	<div class="detail-content">
+		{% if content.content_title_outside != '' %}
+			<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+		{% endif %}
+		<h1 class="detail-content-title">
+			{% if admin == 1 %}
+				<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+			{{content.content_title}}
+		</h1>
+		<h2 class="detail-content-desc">
+			{{content.content_desc|raw}}
+		</h2>
+
+		<div class="detail-content-extra">
+			<ul>
+				<li><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y H:i")}}</time></li>
+				<li><a href="{{cat_url[content.content_cat]}}" title="{{cat_name[content.content_cat]}}"><i class="icon">&#xf105;</i> {{cat_name[content.content_cat]}}</a> </li>
+				{% if admin == 1 %}
+					<li><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</li>
+				{% endif %}
+			</ul>
+		</div>
+		{% include 'block/block_reklam.twig' with {type : 'cat_manset_alti' }%}
+		<figure class="detail-content-image">
+			<img
+				src="{{content.content_image_url}}"
+				alt="{{content.content_title}}"
+				width="100%" height="auto"
+			/>
+		</figure>
+
+		<div class="detail-content-article">
+			{{content_with_smilar|raw}}
+		</div>
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_detay' }%}
+
+		{% include 'block/block_detail_share.twig' with {listen:true} %}
+		{% include 'block/block_detail_tags.twig' %}
+		{% include 'block/block_detail_comment.twig' with {style:'display:none'} %}
+	</div>
+</div>
+
+{% include 'block/block_detail_loader.twig' %}

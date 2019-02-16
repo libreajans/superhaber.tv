@@ -1,0 +1,55 @@
+<div class="photo-gallery">
+	<div class="photo-gallery-fw">
+		<div class="main-gallery">
+			<div class="col-12">
+				<div class="photo-gallery-headline">
+					<i class="icon">{{p_icon|raw}}</i> <a href="{{p_url}}" target="_blank" rel="noopener noreferrer">{{p_title}}</a>
+				</div>
+				<div class="photo-gallery-carousel">
+					<ul class="photo-gallery-list">
+						{% for k, item in content_list %}
+							<li>
+								<a target="_blank" rel="noopener noreferrer"
+									href="{{item.content_url}}"
+									title="{{item.content_title}}">
+									<figure class="photo-gallery-list-image">
+										{% if k == 0%}
+											<img
+												src="{{G_IMGLINK_APP}}lazy.png"
+												data-src="{{item.content_image_url}}"
+												alt="{{item.content_title}}"
+												width="460" height="270"/>
+											<noscript>
+											<img
+												src="{{item.content_image_url}}"
+												alt="{{item.content_title}}"
+												width="460" height="270"/>
+											</noscript>
+										{% else %}
+											<img
+												src="{{G_IMGLINK_APP}}lazy.png"
+												data-src="{{item.content_thumb_url}}"
+												alt="{{item.content_title}}"
+												width="237" height="139"/>
+											<noscript>
+											<img
+												src="{{item.content_thumb_url}}"
+												alt="{{item.content_title}}"
+												width="237" height="139"/>
+											</noscript>
+										{% endif %}
+									</figure>
+									<div class="photo-gallery-list-mask">
+										<div class="photo-gallery-list-title">
+											{{item.content_title|raw}}
+										</div>
+									</div>
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

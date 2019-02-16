@@ -1,0 +1,52 @@
+<?xml-stylesheet type="text/xsl" href="{{SITELINK}}sitemap.xsl"?>
+<urlset
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	{% for item in content %}
+	<url>
+		<loc>{{item.content_url}}</loc>
+		<lastmod>{{item.content_date}}T{{item.content_hours}}+03:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+		{% if image == 1 %}
+			<image:image>
+				<image:loc>{{item.content_image_url}}</image:loc>
+				<image:caption><![CDATA[{{item.content_title|raw}}]]></image:caption>
+			</image:image>
+		{% endif %}
+	</url>
+	{% endfor %}
+	{% if type == 0 %}
+		<url><loc>{{LINK_INDEX}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{LINK_AUTHOR}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.101}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.102}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.103}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.104}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.201}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.202}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.203}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.204}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{page_url.205}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.100}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.101}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.102}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.103}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.104}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.105}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.106}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.107}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.108}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.109}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.110}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.111}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.112}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.113}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.114}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.115}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url.200}}</loc><lastmod>{{tarih}}</lastmod><changefreq>Daily</changefreq><priority>1.0</priority></url>
+	{% endif %}
+</urlset>

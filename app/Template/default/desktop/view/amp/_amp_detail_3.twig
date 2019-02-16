@@ -1,0 +1,48 @@
+<article>
+	{% if content.content_title_outside != '' %}
+		<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+	{% endif %}
+	<h1>{{content.content_title|raw}}</h1>
+	<h2>{{author.author_name}}</h2>
+
+	<div class="detail-content-extra">
+		<ul>
+			<li><time>{{content.content_time|date("d.m.Y")}}</time></li>
+			{% if content.content_cat != ""%}
+				<li>&raquo;</li>
+				<li><a href="{{cat_url[content.content_cat]}}" title="{{cat_name[content.content_cat]}}">{{cat_name[content.content_cat]}}</a></li>
+			{% endif %}
+		</ul>
+	</div>
+
+	{% include 'block/block_reklam.twig' with {type : 'amp_reklam_300x250' }%}
+
+	<figure class="detail-image">
+		<amp-img
+			src="{{author.author_image_url}}"
+			alt="{{author.author_name}}"
+			width="200" height="200"
+			layout="responsive"></amp-img>
+	</figure>
+
+	{% include 'amp/_amp_share.twig'  %}
+
+	<div class="content">
+		{{content.content_text|raw}}
+	</div>
+
+</article>
+
+
+<aside>
+	<header>
+		<h4>Yazarın Diğer Yazıları</h4>
+	</header>
+	{% for item in smilar %}
+		<div class="author-diger">
+			<a class="full-link-makale" href="{{item.content_url}}">
+				<h5>{{item.content_date}} &bull; {{item.content_title|raw}}</h5>
+			</a>
+		</div>
+	{% endfor %}
+</aside>

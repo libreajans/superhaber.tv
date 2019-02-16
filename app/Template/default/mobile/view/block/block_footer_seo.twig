@@ -1,0 +1,49 @@
+<script>
+	/**
+	Required: jQuery
+	*/
+	$(function ()
+	{
+		var i = false;
+		$(".open-footer-icon").click(function()
+		{
+			if (i == false)
+			{
+				$(".footer-category").animate({height:"420px"});
+				$(".footer-category-container").animate({height:"420px"});
+				i = true;
+				$(this).html('<i class="icon">&#xe82a;</i>');
+			}
+			else
+			{
+				$(this).html('<i class="icon">&#xe827;</i>');
+				$(".footer-category").animate({height:"120px"});
+				$(".footer-category-container").animate({height:"120px"});
+				i = false
+			}
+		});
+	});
+</script>
+
+{% if content_list|length > 0 %}
+	<div class="footer-category">
+		<div class="col-12">
+			<div class="footer-category-container">
+				<div class="open-footer-icon">
+					<i class="icon">&#xe827;</i>
+				</div>
+				<ul class="footer-category-list">
+					{% for item in content_list %}
+					<li>
+						<a
+							href="{{item.content_url}}"
+							title="{{item.content_title}}">
+							<i class="icon">&#xf105;</i> {{item.content_title|raw}}
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endif %}

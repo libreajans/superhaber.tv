@@ -1,0 +1,59 @@
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead', cat_slug:cat_url_slug[content.content_cat] }%}
+{% if  cat_url_slug[content.content_cat] == 'seyahat' %}
+	<style>
+		.margin60
+		{
+			margin-top: 60px;
+		}
+	</style>
+{% endif %}
+
+<div class="detail-container margin60">
+	<article class="detail-content">
+		{% if content.content_title_outside != '' %}
+			<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+		{% endif %}
+		<h1 class="detail-title">
+			{{content.content_title}}
+			{% if admin == 1 %}
+				<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+		</h1>
+		<h2 class="detail-description">{{content.content_desc|raw}}</h2>
+		<div class="detail-location">
+			{% if admin == 1 %}
+				<span class="dct"><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</span>
+			{% endif %}
+			<span class="dct"><a href="{{cat_url[content.content_cat]}}" title="{{cat_name[content.content_cat]}}"> <i class="icon">&#xe803;</i> {{cat_name[content.content_cat]}} </a></span>
+			<span><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y H:i")}}</time></span>
+		</div>
+		<div id="content_{{content.content_id}}">
+			<div class="detail-image-content">
+				<figure class="detail-image">
+					<img
+						src="{{content.content_image_url}}"
+						alt="{{content.content_title}}"
+						width="608" height="357"
+					/>
+				</figure>
+			</div>
+
+			{% include 'block/block_detail_share.twig' %}
+
+			<div class="detail-text">
+				{{content_with_smilar|raw}}
+			</div>
+
+			{% include 'block/block_detail_tags.twig' %}
+			{% include 'block/block_detail_comment.twig' %}
+
+		</div>
+	</article>
+	<aside class="detail-right">
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_2', cat_slug:cat_url_slug[content.content_cat] }%}
+		{% include 'block/block_aside_onecikanlar.twig' %}
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_3', cat_slug:cat_url_slug[content.content_cat] }%}
+	</aside>
+</div>
+
+{% include 'block/block_detail_loader.twig' %}

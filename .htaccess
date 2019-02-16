@@ -1,0 +1,274 @@
+#######################################################################
+# siteye özel .htaccess dosyasıdır.
+#######################################################################
+# SetEnv TZ Europe/Istanbul
+# SetEnv variables_order GPSC
+#
+# Sunucu php_value üstüne yazmak gerekirse kullanıyoruz,
+# İlgili sunucuda çalışmazsa php.ini dosyasından
+# aşağıdaki şekilde güncellemek gerekiyor
+#
+# php_value allow_url_fopen Off
+# php_value allow_url_include Off
+# php_value display_startup_errors off
+# php_value display_errors on
+# php_value max_file_uploads 100
+# php_value max_input_time 600
+# php_value max_execution_time 360
+# php_value upload_max_filesize 1000M
+# php_value post_max_size 1000M
+# php_value memory_limit 2000M
+#######################################################################
+
+#######################################################################
+# cors ve maxage düzenlemesi
+#######################################################################
+
+<IfModule mod_headers.c>
+	<FilesMatch ".(eot|ttf|otf|woff)">
+		Header set Access-Control-Allow-Origin "*"
+	</FilesMatch>
+	<FilesMatch "\.(jpg|jpeg|png|css|js)$">
+		Header set Cache-Control "max-age=604800, public"
+	</FilesMatch>
+</IfModule>
+
+#######################################################################
+# Rewrite aktif ediyoruz
+# Hata Sayfasını tanımlıyoruz
+#######################################################################
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+ErrorDocument 404 	/index.php?page=404
+DirectoryIndex 		index.php?page=index
+
+##################################################################
+# eski siteden miras veya global olarak sorunlu urlleri banlayalım
+##################################################################
+
+#wp hedefli saldırılan adresler
+Rewriterule (.*)wp-login(.+)$				null.html [L]
+Rewriterule (.*)wp-admin(.+)$				null.html [L]
+Rewriterule (.*)wp-content(.+)$				null.html [L]
+#eski sitemiz
+Rewriterule ^cdn/15388/(.+)$				null.html [L]
+Rewriterule ^sites/default(.+)$				null.html [L]
+Rewriterule ^node/(.+)$ 					null.html [L]
+Rewriterule ^apps/(.+)$ 					null.html [L]
+Rewriterule ^181893412/(.+)$ 				null.html [L]
+#çeşitli saldırılan adresler
+Rewriterule ^images/(.+)$ 					null.html [L]
+Rewriterule ^mraid(.+)$ 					null.html [L]
+Rewriterule ^xxx$ 							null.html [L]
+
+##################################################################
+# www yönlendirmesi
+# refli bağlantılar ile oluşturulan spamları önleyelim
+##################################################################
+
+RewriteCond %{HTTP_HOST} ^superhaber.tv [NC]
+RewriteRule ^(.*)$ http://www.superhaber.tv/$1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} \?(ref=.*)?\ HTTP [NC]
+RewriteRule .? http://www.superhaber.tv? [R=301,L]
+
+##################################################################
+# Siteye Özel Kurallar
+##################################################################
+
+#----------------------------------------------------------------------
+#CDN refresh amaçlı sürüm hilesi
+#----------------------------------------------------------------------
+Rewriterule ^assets/default/desktop/css/desktop_([0-9]*).css$			assets/default/desktop/css/desktop.css [L]
+Rewriterule ^assets/default/desktop/css/app_([0-9]*).css$				assets/default/desktop/css/app.css [L]
+Rewriterule ^assets/default/desktop/css/widget_([0-9]*).css$			assets/default/desktop/css/widget.css [L]
+Rewriterule ^assets/default/mobile/css/mobile_([0-9]*).css$				assets/default/mobile/css/mobile.css [L]
+
+Rewriterule ^assets/default/desktop/js/main_([0-9]*).js$				assets/default/desktop/js/main.js [L]
+Rewriterule ^assets/default/desktop/js/index_([0-9]*).js$				assets/default/desktop/js/index.js [L]
+Rewriterule ^assets/default/desktop/js/detail_([0-9]*).js$				assets/default/desktop/js/detail.js [L]
+Rewriterule ^assets/default/desktop/js/cat_([0-9]*).js$					assets/default/desktop/js/cat.js [L]
+
+Rewriterule ^assets/default/mobile/js/main_([0-9]*).js$					assets/default/mobile/js/main.js [L]
+Rewriterule ^assets/default/mobile/js/index_([0-9]*).js$				assets/default/mobile/js/index.js [L]
+Rewriterule ^assets/default/mobile/js/detail_([0-9]*).js$				assets/default/mobile/js/detail.js [L]
+Rewriterule ^assets/default/mobile/js/cat_([0-9]*).js$					assets/default/mobile/js/cat.js [L]
+
+#----------------------------------------------------------------------
+# içerik url yeniden yazma kuralları
+# NOT: ? işareti kendisinden sonra geleni seçmeli hale getiriyor
+#----------------------------------------------------------------------
+
+Rewriterule ^(.+)-([0-9]*)-makale-amp?/?$					index.php?page=detail_amp&id=$2 [L]
+Rewriterule ^(.+)-([0-9]*)-haber-amp?/?$					index.php?page=detail_amp&id=$2 [L]
+Rewriterule ^(.+)-([0-9]*)-galeri-amp?/?$					index.php?page=detail_amp&id=$2 [L]
+Rewriterule ^(.+)-([0-9]*)-haber?/?$						index.php?page=detail_content&id=$2 [L]
+Rewriterule ^(.+)-([0-9]*)-video?/?$						index.php?page=detail_video&id=$2 [L]
+Rewriterule ^(.+)-([0-9]*)-makale?/?$						index.php?page=detail_article&id=$2 [L]
+Rewriterule ^(.+)-([0-9]*)-galeri?/?$						index.php?page=detail_gallery&id=$2 [L]
+
+#----------------------------------------------------------------------
+# sayfalar url yeniden yazma kuralları
+#----------------------------------------------------------------------
+
+# Statik Sayfalar
+Rewriterule ^kunye?/?$										index.php?page=page&id=101 [L]
+Rewriterule ^kullanim-sartlari?/?$							index.php?page=page&id=102 [L]
+Rewriterule ^gizlilik-bildirimi?/?$							index.php?page=page&id=103 [L]
+Rewriterule ^hukuka-aykirilik-bildirimi?/?$					index.php?page=page&id=104 [L]
+Rewriterule ^tanitim?/?$                   					index.php?page=page&id=106 [L]
+# Modüler Sayfalar
+Rewriterule ^iletisim?/?$									index.php?page=contact [L]
+Rewriterule ^galeri?/?$										index.php?page=gallery [L]
+Rewriterule ^video?/?$										index.php?page=video [L]
+# İndex ve Detay Çağrılı Sayfalar
+Rewriterule ^arsiv?/?$										index.php?page=archive [L]
+Rewriterule ^arama?/?$										index.php?page=search [L]
+Rewriterule ^yazarlar?/?$									index.php?page=authors [L]
+Rewriterule ^arsiv/(.+)?/?$									index.php?page=archive&tarih=$1 [L]
+Rewriterule ^arama/(.+)?/?$									index.php?page=search&search=$1 [L]
+Rewriterule ^yazar/(.+)?/?$									index.php?page=authors&key=$1 [L]
+# Sadece Detay Çağrılı Sayfalar
+Rewriterule ^etiket/(.+)?/?$								index.php?page=tags&key=$1 [L]
+# Pageview sayfası
+Rewriterule ^pageview/([0-9]*)?/?$							index.php?page=pageview&id=$1 [L]
+
+#----------------------------------------------------------------------
+# kategori url yeniden yazma kuralları
+#----------------------------------------------------------------------
+
+Rewriterule ^gundem?/?$										index.php?page=cat&id=100&pg=1 [L]
+Rewriterule ^spor?/?$										index.php?page=cat&id=101&pg=1 [L]
+Rewriterule ^yasam?/?$										index.php?page=cat&id=102&pg=1 [L]
+Rewriterule ^ekonomi?/?$									index.php?page=cat&id=103&pg=1 [L]
+Rewriterule ^dunya?/?$										index.php?page=cat&id=104&pg=1 [L]
+Rewriterule ^teknoloji?/?$									index.php?page=cat&id=105&pg=1 [L]
+Rewriterule ^saglik?/?$										index.php?page=cat&id=106&pg=1 [L]
+Rewriterule ^seyahat?/?$									index.php?page=cat&id=107&pg=1 [L]
+Rewriterule ^tv?/?$											index.php?page=cat&id=108&pg=1 [L]
+Rewriterule ^kultur-sanat?/?$								index.php?page=cat&id=109&pg=1 [L]
+Rewriterule ^emlak?/?$										index.php?page=cat&id=110&pg=1 [L]
+Rewriterule ^siyaset?/?$									index.php?page=cat&id=111&pg=1 [L]
+Rewriterule ^magazin?/?$									index.php?page=cat&id=112&pg=1 [L]
+Rewriterule ^medya?/?$										index.php?page=cat&id=113&pg=1 [L]
+Rewriterule ^roportaj?/?$									index.php?page=cat&id=114&pg=1 [L]
+Rewriterule ^yemek?/?$										index.php?page=cat&id=115&pg=1 [L]
+Rewriterule ^diger?/?$										index.php?page=cat&id=200&pg=1 [L]
+
+#----------------------------------------------------------------------
+# sitemap url yeniden yazma kuralları
+#----------------------------------------------------------------------
+
+Rewriterule ^sitemap.xml$									index.php?page=sitemap&image=1&type=0 [L]
+Rewriterule ^sitemap_change.xml$							index.php?page=sitemap&image=1&type=1 [L]
+
+Rewriterule ^sitemap_haber.xml$								index.php?page=sitemap&image=0&type=20 [L]
+Rewriterule ^sitemap_galeri.xml$							index.php?page=sitemap&image=0&type=21 [L]
+Rewriterule ^sitemap_makale.xml$							index.php?page=sitemap&image=0&type=23 [L]
+
+Rewriterule ^sitemap_amp.xml$								index.php?page=sitemap&image=0&type=30 [L]
+Rewriterule ^sitemap_change_amp.xml$						index.php?page=sitemap&image=0&type=31 [L]
+
+Rewriterule ^sitemap_haber_amp.xml$							index.php?page=sitemap&image=0&type=40 [L]
+Rewriterule ^sitemap_galeri_amp.xml$						index.php?page=sitemap&image=0&type=41 [L]
+Rewriterule ^sitemap_makale_amp.xml$						index.php?page=sitemap&image=0&type=43 [L]
+
+Rewriterule ^sitemap_yandex.xml$							index.php?page=sitemap&image=0&type=0 [L]
+Rewriterule ^sitemap_yandex_change.xml$						index.php?page=sitemap&image=0&type=1 [L]
+
+Rewriterule ^sitemap_news.xml$								index.php?page=sitemap_news [L]
+Rewriterule ^sitemap_google_news.xml$						index.php?page=sitemap_news [L]
+Rewriterule ^google-news-sitemap.xml$						index.php?page=sitemap_news [L]
+Rewriterule ^googlenews.xml$								index.php?page=sitemap_news [L]
+
+#eski site linklerini bozmayalım
+Rewriterule ^sitemap-news.asp$								index.php?page=sitemap_news [L]
+Rewriterule ^sitemap.asp$									index.php?page=sitemap&image=1&type=0 [L]
+
+Rewriterule ^sitene-ekle?/?$						        index.php?page=sitene_ekle [L]
+Rewriterule ^widget/(.*)/([0-9]*)?/?$	    	            index.php?page=widget&cat=$1&limit=$2 [L]
+Rewriterule ^widget/(.*)?/?$	    	                    index.php?page=widget&cat=$1 [L]
+
+#----------------------------------------------------------------------
+# TRASH
+#----------------------------------------------------------------------
+
+#taşınan url değerlerini yeni adreslerine yönlendiriyoruz
+Rewriterule ^giris.php$										index.php?page=giris [R]
+Rewriterule ^acp.php$										index.php?page=acp [R]
+Rewriterule ^giris$											index.php?page=giris [R]
+Rewriterule ^acp$											index.php?page=acp [R]
+Rewriterule ^panel?/?$										index.php?page=acp [R]
+Rewriterule ^yonetim$										index.php?page=acp [R]
+
+# Kimi sayfalara alternatif urller üstünden de ulaşılabilsin
+Rewriterule ^feed.xml$										index.php?page=feed [L]
+Rewriterule ^rss.xml$										index.php?page=feed [L]
+Rewriterule ^feed/$											index.php?page=feed [L]
+Rewriterule ^feed$											index.php?page=feed [L]
+Rewriterule ^atom/$											index.php?page=feed [L]
+Rewriterule ^atom$											index.php?page=feed [L]
+Rewriterule ^rss/$											index.php?page=feed [L]
+Rewriterule ^rss$											index.php?page=feed [L]
+
+#favicon.ico için png dosyasına link oluşturuyoruz
+Rewriterule ^favicon.ico$									assets/default/desktop/img/favicon.png [L]
+Rewriterule ^favicon.png$									assets/default/desktop/img/favicon.png [L]
+Rewriterule ^favicon.gif$									assets/default/desktop/img/favicon.png [L]
+Rewriterule ^apple-touch-icon.png$							assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-precomposed.png$				assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-76x76.png$					assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-76x76-precomposed.png$		assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-120x120.png$					assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-120x120-precomposed.png$		assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-152x152.png$					assets/default/desktop/img/logo_sh.png [L]
+Rewriterule ^apple-touch-icon-152x152-precomposed.png$		assets/default/desktop/img/logo_sh.png [L]
+
+#----------------------------------------------------------------------
+# Sağ Yazmalar!
+#----------------------------------------------------------------------
+
+# Etiket yoksa ana sayfaya dönüyoruz
+Rewriterule ^etiket/$										/ [R]
+Rewriterule ^etiket$										/ [R]
+Rewriterule ^default.asp$									/ [R]
+
+# id yoksa ana sayfaya dönüyoruz
+Rewriterule ^-.html/$										/ [R]
+Rewriterule ^foto-galeri$									galeri [R]
+
+#----------------------------------------------------------------------
+# ESKİ urller aktif olsun
+#----------------------------------------------------------------------
+
+Rewriterule ^(.+)/(.+)/haber-([0-9]*)$						$2-$3-haber [R=302]
+Rewriterule ^foto-galeri/(.+)/haber-([0-9]*)/(.+)$			$1-$2-galeri [R=302]
+Rewriterule ^foto-galeri/(.+)/haber-([0-9]*)?/?$			$1-$2-galeri [R=302]
+Rewriterule ^yazarlar/(.+)/haber-([0-9]*)$					$1-$2-makale [R=302]
+
+#---------------------------------------------------------------------
+# Nazar Değmesin
+#----------------------------------------------------------------------
+
+#bu saçma kod sayesinde klasörlerimizi kem gözlerden saklıyoruz
+#özetle, klasörleri hedefleyen istekleri ana sayfaya yönlendiriyoruz
+#Dikkat, bu kural en son işlenmeli, yoksa başka şeyleri çalışmaz hale getirebilir
+Rewriterule ^(.+)/(.+)/(.+)/(.+)/(.+)/(.+)/(.+)/(.+)/$		/ [R]
+Rewriterule ^(.+)/(.+)/(.+)/(.+)/(.+)/(.+)/(.+)/$			/ [R]
+Rewriterule ^(.+)/(.+)/(.+)/(.+)/(.+)/(.+)/$				/ [R]
+Rewriterule ^(.+)/(.+)/(.+)/(.+)/(.+)/$						/ [R]
+Rewriterule ^(.+)/(.+)/(.+)/(.+)/$							/ [R]
+Rewriterule ^(.+)/(.+)/(.+)/$								/ [R]
+Rewriterule ^(.+)/(.+)/$									/ [R]
+Rewriterule ^(.+)/$											/ [R]
+
+#amp saçmalığı datamızı yemesin
+Rewriterule ^amp_preconnect(.+)$ 							null.html [L]
+
+
+
+#----------------------------------------------------------------------
+# Bitti
+#----------------------------------------------------------------------

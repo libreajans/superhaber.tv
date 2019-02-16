@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+	<channel>
+		<title>{{L.pIndex_Company}}</title>
+		<link>{{LINK_INDEX}}</link>
+		<description>{{L.pIndex_Company}} RSS Beslemeleri</description>
+		<language>tr</language>
+		<pubDate>{{last_build_date}}</pubDate>
+		<lastBuildDate>{{last_build_date}}</lastBuildDate>
+		<generator>{{L.pIndex_Company}}</generator>
+		<atom:link href="{{LINK_FEED}}" rel="self" type="application/rss+xml"/>
+		<image>
+			<url>{{G_IMGLINK_APP}}logo_sh.png</url>
+			<title>{{L.pIndex_Company}}</title>
+			<link>{{LINK_INDEX}}</link>
+		</image>
+		{% for item in content %}
+			<item>
+				<title>{{item.content_title|raw}}</title>
+				<link>{{item.content_url}}</link>
+				<description>{{item.content_desc}}</description>
+				<pubDate>{{item.changetar}}</pubDate>
+				<guid>{{item.content_url}}</guid>
+				<category>{{item.content_cat_name}}</category>
+				<media:content url="{{item.content_image_url}}"/>
+				<media:thumbnail url="{{item.content_thumb_url}}"/>
+			</item>
+		{% endfor%}
+	</channel>
+</rss>

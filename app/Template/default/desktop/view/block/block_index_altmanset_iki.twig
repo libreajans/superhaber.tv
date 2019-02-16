@@ -1,0 +1,100 @@
+<script>
+
+	/**
+	Required: owlCarousel
+	*/
+
+	$(function ()
+	{
+		/* Alt Manşet İki Slider*/
+		var bottom_slider = $(".bottom-headline-list");
+		bottom_slider.owlCarousel({
+			items : 4,
+			loop:true,
+			autoplay:true,
+			autoplayTimeout:3000,
+			autoplayHoverPause:true
+		});
+
+		$('.bottom-headline-next').click(function()
+		{
+			bottom_slider.trigger('next.owl.carousel');
+		});
+		$(".bottom-headline-prev").click(function()
+		{
+			bottom_slider.trigger('prev.owl.carousel');
+		});
+	});
+</script>
+
+<div class="module-container">
+	<ul class="module-three-column">
+		{% for i in 0..2 %}
+			<li>
+				<a target="_blank" rel="noopener noreferrer"
+					href="{{content_list[i].content_url}}"
+					title="{{content_list[i].content_title}}">
+					{% if i == 0%}
+						<figure class="module-three-column-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{content_list[i].content_image_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="402" height="234"/>
+							<noscript>
+							<img
+								src="{{content_list[i].content_image_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="402" height="234"/>
+							</noscript>
+						</figure>
+					{% else%}
+						<figure class="module-three-column-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{content_list[i].content_thumb_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="263" height="156"/>
+							<noscript>
+							<img
+								src="{{content_list[i].content_thumb_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="263" height="156"/>
+							</noscript>
+						</figure>
+					{% endif %}
+					<div class="module-three-column-mask">
+						<div class="module-three-column-title">
+							{{content_list[i].content_title|raw}}
+						</div>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<div class="bottom-headline-carousel">
+	<ul class="bottom-headline-list">
+		{% for i in 3..(content_list|length -1) %}
+		<li>
+			<a target="_blank" rel="noopener noreferrer"
+				href="{{content_list[i].content_url}}"
+				title="{{content_list[i].content_title}}">
+				<figure class="bottom-headline-list-image">
+					<img
+						src="{{content_list[i].content_thumb_url}}"
+						alt="{{content_list[i].content_title}}"
+						width="235" height="135"
+					/>
+				</figure>
+				<div class="bottom-headline-list-title">
+					{{content_list[i].content_title|raw}}
+				</div>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	<div class="bottom-headline-prev"><i class="icon">&#xe828;</i></div>
+	<div class="bottom-headline-next"><i class="icon">&#xe829;</i></div>
+</div>

@@ -1,0 +1,154 @@
+<script>
+	$(document).ready(function()
+	{
+		var loading 		= false;
+
+		$(window).scroll(function()
+		{
+			var content_id 		= $('.his_item').last().attr('data-id');
+			var content_url		= $('.his_item').last().attr('data-url');
+			var content_title	= $('.his_item').last().attr('data-title');
+
+			//if ($(window).scrollTop() == $(document).height() - $(window).height() )
+			if($(document).height() - $(window).height() <= $(window).scrollTop() + 200 && content_id != 0 && loading==false)
+			{
+				//loading değerimizi true olarak düzenleyelim
+				loading = true;
+
+				//tüm reklamlar bir kapansın
+				$('.reklam').remove();
+
+				$.ajax(
+				{
+					type		: 'POST',
+					url			: '{{LINK_AJAX}}',
+					dataType	: 'html',
+					data		: {'type': 'infinity_article', 'id': content_id},
+					beforeSend	: function(html)
+					{
+						$('.his_item').not(':last').remove();
+					},
+					success		: function(html)
+					{
+						$('#results_'+content_id).replaceWith(html);
+						$(window).on('ajaxComplete', function()
+						{
+							setTimeout(function()
+							{
+								$(window).lazyLoadXT();
+								history.pushState(null, content_title, content_url);
+								document.title = content_title;
+								url = content_url;
+								url = url.replace(window.location.protocol + "//" + window.location.hostname, "");
+								ga('send', 'pageview', url);
+								twttr.widgets.load();
+								loading = false;
+							}, 10);
+						});
+						//yorum listesini yeniden çağır
+					}
+				}).fail(function(xhr, ajaxOptions, thrownError)
+				{
+					//hata var mı?
+					//alert(thrownError);
+					loading = false;
+				});
+			}
+		});
+	});
+</script>
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "NewsArticle",
+	"inLanguage":"tr-TR",
+	"headline": "{{content.content_title}}",
+	"description": "{{author_info.author_name}} yazdı {{content.content_title}}",
+	"datePublished": "{{content.content_time|date("Y-m-dTH:i")}}",
+	"dateModified": "{{content.change_time|date("Y-m-dTH:i")}}",
+	"mainEntityOfPage":{ "@type":"WebPage", "@id":"{{site_canonical}}" },
+	"image": { "@type": "ImageObject", "url": "{{content.content_image_url}}", "height": 800, "width": 800 },
+	"publisher": { "@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": { "@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60 } },
+	"author": { "@type": "Person", "name": "{{author_info.author_name}}", "image": { "@type": "ImageObject", "url": "{{author_info.author_image_url}}", "width": 120, "height": 60 } }
+}
+</script>
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa" } },
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_AUTHOR}}", "name": "Yazarlar" } },
+		{ "@type": "ListItem", "position": 3, "item": { "@id": "{{author_info.author_url}}", "name": "{{author_info.author_name}}" } },
+		{ "@type": "ListItem", "position": 4, "item": { "@id": "{{site_canonical}}", "name": "{{content.content_title}}" } }
+	]
+}
+</script>
+
+{% include 'block/block_reklam.twig' with {type : 'define_cat', cat_slug:cat_url_slug[content.content_cat] }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead', cat_slug:cat_url_slug[content.content_cat] }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin', cat_slug:cat_url_slug[content.content_cat]}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sol1', cat_slug:cat_url_slug[content.content_cat]}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sag1', cat_slug:cat_url_slug[content.content_cat]}%}
+
+<div class="detail-container">
+	<article class="detail-content">
+
+		{% include 'block/block_detail_author.twig' %}
+
+		<h1 class="detail-title">
+			{% if admin == 1 %}
+				<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+			{{content.content_title}}
+		</h1>
+		<h2 class="detail-description hideMe">{{content.content_desc|raw}}</h2>
+		<div class="detail-location">
+			{% if admin == 1 %}
+				<span class="dct"><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</span>
+			{% endif %}
+			<span class="dct"><a href="{{LINK_AUTHOR}}" title="Yazarlar"> <i class="icon">&#xe803;</i> Yazarlar </a></span>
+			<span><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y H:i")}}</time></span>
+		</div>
+		<div id="content_{{content.content_id}}">
+			{% include 'block/block_detail_share.twig' %}
+
+			<div class="detail-text">
+				{% include 'block/block_reklam.twig' with {type : 'cat_sayfa_sol2', cat_slug:cat_url_slug[content.content_cat] }%}
+				{{content_with_smilar|raw}}
+			</div>
+			{% include 'block/block_detail_tags.twig' %}
+			{% include 'block/block_reklam.twig' with {type : 'cat_sayfa_alti', cat_slug:cat_url_slug[content.content_cat] }%}
+			{% include 'block/block_detail_comment.twig' %}
+		</div>
+	</article>
+	<aside class="detail-right">
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_2', cat_slug:cat_url_slug[content.content_cat] }%}
+
+		{% if content_benzer_list|length > 0 %}
+			<div class="detail-article-similar-post">
+				<div class="detail-block-title"><i class="icon">&#xe814;</i> Diğer Yazıları</div>
+				<ul class="detail-article-similar-post-list">
+					{% for item in content_benzer_list %}
+						<li>
+							<a href="{{item.content_url}}" title="{{item.content_title}}">
+								<div>
+									{{item.content_title|raw}}
+								</div>
+								<time class="published-date"><i class="icon">&#xe82b;</i> {{item.content_date}} </time>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_3', cat_slug:cat_url_slug[content.content_cat] }%}
+
+	</aside>
+</div>
+
+{% include 'block/block_detail_loader.twig' %}

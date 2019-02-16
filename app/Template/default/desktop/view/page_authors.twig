@@ -1,0 +1,164 @@
+{% include 'block/block_reklam.twig' with {type : 'define_cat',cat_slug:'yazarlar' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead', cat_slug:'yazarlar' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin', cat_slug:'yazarlar'}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sol1', cat_slug:'yazarlar'}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sag1', cat_slug:'yazarlar'}%}
+
+{% if key == "" %}
+	<main class="author-page-container">
+		<div class="col-12">
+			<ul class="author-page-list">
+				{% for item in author_content %}
+					<li>
+						<a href="{{item.author_url}}">
+							<figure class="author-list-image">
+								<img
+									src="{{G_IMGLINK_APP}}lazy.png"
+									data-src="{{item.author_image_url}}"
+									alt="{{item.author_name}}"
+									width="100" height="100"/>
+								<noscript>
+								<img
+									src="{{item.author_image_url}}"
+									alt="{{item.author_name}}"
+									width="100" height="100"/>
+								</noscript>
+							</figure>
+							<div class="author-list-title">
+								{{item.author_name}}
+							</div>
+							<div class="author-list-post">
+								<a href="{{item.content_url}}">{{item.content_title|raw}}</a>
+							</div>
+						</a>
+						{% if item.author_facebook != "" or  item.author_twitter != "" or item.author_instagram != "" or item.author_email != ""%}
+							<div class="author-list-social-media">
+
+								{% if item.author_facebook != "" %}
+								<div class="fb">
+									<a target="_blank" rel="external noopener noreferrer" href="{{item.author_facebook}}">
+										<i class="icon">&#xf09a;</i>
+									</a>
+								</div>
+								{% endif %}
+
+								{% if item.author_twitter != "" %}
+								<div class="tt">
+									<a target="_blank" rel="external noopener noreferrer" href="{{item.author_twitter}}">
+										<i class="icon">&#xf099;</i>
+									</a>
+								</div>
+								{% endif %}
+
+								{% if item.author_instagram != "" %}
+								<div class="ig">
+									<a target="_blank" rel="external noopener noreferrer" href="{{item.author_instagram}}">
+										<i class="icon">&#xf16d;</i>
+									</a>
+								</div>
+								{% endif %}
+
+								{% if item.author_email != "" %}
+								<div class="mail">
+									<a target="_blank" rel="external noopener noreferrer" href="mailto:{{item.author_email}}">
+										<i class="icon">&#xf0e0;</i>
+									</a>
+								</div>
+								{% endif %}
+							</div>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+</main>
+
+{% else %}
+	<main class="author-page-container">
+		<div class="col-8">
+			<div class="author-profile-container">
+				<div class="breadcrumb">
+					<ul>
+						<li>
+							<a href="{{LINK_INDEX}}" title="Ana Sayfa">
+								<i class="icon">&#xe810;</i> Ana Sayfa
+							</a>
+						</li>
+						<li>
+							<a href="{{LINK_AUTHOR}}" title="Yazarlar">
+								<i class="icon">&#xe804;</i> Yazarlar
+							</a>
+						</li>
+						<li><i class="icon">&#xf2be;</i> {{author_info.author_name}}</li>
+					</ul>
+				</div>
+
+				<div class="author-profile">
+					{% if author_info.author_facebook != "" %}
+						<div class="ap-sm fb facebook">
+							<a rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_facebook}}">
+								<i class="icon">&#xf09a;</i>
+							</a>
+						</div>
+					{% endif %}
+
+					{% if author_info.author_twitter != "" %}
+					<div class="ap-sm tt twitter">
+						<a rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_twitter}}">
+							<i class="icon">&#xf099;</i>
+						</a>
+					</div>
+					{% endif %}
+					<figure class="author-profile-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{author_info.author_image_url}}"
+							alt="{{author_info.author_name}}"
+							width="200" height="200"/>
+						<noscript></noscript>
+					</figure>
+
+					{% if author_info.author_instagram != "" %}
+					<div class="ap-sm insta instagram">
+						<a rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_instagram}}">
+							<i class="icon">&#xf16d;</i>
+						</a>
+					</div>
+					{% endif %}
+
+					{% if author_info.author_email != "" %}
+						<div class="ap-sm mail email">
+							<a rel="external nofollow" target="_blank" rel="noopener noreferrer" href="mailto:{{author_info.author_email}}">
+								<i class="icon">&#xf0e0;</i>
+							</a>
+						</div>
+					{% endif %}
+				</div>
+				<div class="author-profile-title">
+					{{author_info.author_name}}
+				</div>
+			</div>
+
+			<div class="author-post-list">
+				<ul>
+					{% for item in content_list %}
+						<li>
+							<a
+								href="{{item.content_url}}"
+								title="{{item.content_title|striptags}}">
+								<time class="published-date">
+								<i class="icon">&#xe82b;</i> {{item.content_date}}</time>
+								{{item.content_title|striptags}}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<aside class="col-4">
+			{% include 'block/block_reklam.twig' with {type : 'cat_sag_2', cat_slug: 'yazarlar'}%}
+			{% include 'block/block_reklam.twig' with {type : 'cat_sag_3', cat_slug: 'yazarlar'}%}
+		</aside>
+	</main>
+{% endif %}
+

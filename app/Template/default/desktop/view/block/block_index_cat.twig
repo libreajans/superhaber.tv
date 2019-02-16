@@ -1,0 +1,179 @@
+{% if type == "first" %}
+	{% if content_list|length > 0 %}
+		<div class="module-container">
+			<div class="module-title {{p_color}}">
+				{% if p_url != '' %}
+					<span><a href="{{p_url}}">{{p_title}}</a></span>
+				{% else %}
+					<span>{{p_title}}</span>
+				{% endif %}
+			</div>
+			<ul class="box-module-list">
+				{% for i in 0..5 %}
+					<li>
+						<a target="_blank" rel="noopener noreferrer"
+							href="{{content_list[i].content_url}}"
+							title="{{content_list[i].content_title}}">
+							<figure class="box-module-list-image">
+								{% if i == 0 or i == 5 %}
+									<img
+										src="{{G_IMGLINK_APP}}lazy.png"
+										data-src="{{content_list[i].content_image_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="400" height="245"/>
+									<noscript>
+									<img
+										src="{{content_list[i].content_image_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="400" height="245"/>
+									</noscript>
+								{% else %}
+									<img
+										src="{{G_IMGLINK_APP}}lazy.png"
+										data-src="{{content_list[i].content_thumb_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="267" height="156"/>
+									<noscript>
+									<img
+										src="{{content_list[i].content_thumb_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="267" height="156"/>
+									</noscript>
+								{% endif %}
+							</figure>
+							<div class="box-module-list-mask">
+								<div class="box-module-list-title">
+									{{content_list[i].content_title|raw}}
+								</div>
+							</div>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endif %}
+
+{% if type == "second" %}
+	{% if content_list|length > 0 %}
+			<div class="module-container">
+				<div class="module-title {{p_color}}">
+					{% if p_url != '' %}
+						<span><a href="{{p_url}}">{{p_title}}</a></span>
+					{% else %}
+						<span>{{p_title}}</span>
+					{% endif %}
+				</div>
+				<ul class="four-box-list">
+					{% for item in content_list %}
+						<li>
+							<a target="_blank" rel="noopener noreferrer"
+								href="{{item.content_url}}"
+								title="{{item.content_title}}">
+								<figure class="four-box-list-image">
+									<img
+										src="{{G_IMGLINK_APP}}lazy.png"
+										data-src="{{item.content_thumb_url}}"
+										alt="{{item.content_title}}"
+										width="230" height="135"/>
+									<noscript>
+									<img
+										src="{{item.content_thumb_url}}"
+										alt="{{item.content_title}}"
+										width="230" height="135"/>
+									</noscript>
+								</figure>
+								<div class="four-box-list-title">
+									{{item.content_title|raw}}
+								</div>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+	{% endif %}
+{% endif %}
+
+{% if type == "three" %}
+	{% if content_list|length > 0 %}
+		<div class="module-container">
+			<div class="module-title {{p_color}}">
+				{% if p_url != '' %}
+					<span><a href="{{p_url}}">{{p_title}}</a></span>
+				{% else %}
+					<span>{{p_title}}</span>
+				{% endif %}
+			</div>
+			<ul class="slider-module-list">
+				{% for i in 0..0 %}
+					<li>
+						<a target="_blank" rel="noopener noreferrer"
+							href="{{content_list[i].content_url}}"
+							title="{{content_list[i].content_title}}">
+							<figure class="slider-module-list-image">
+								{% if i == 0 %}
+									<img
+										src="{{G_IMGLINK_APP}}lazy.png"
+										data-src="{{content_list[i].content_image_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="588" height="345"/>
+									<noscript>
+									<img
+										src="{{content_list[i].content_image_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="588" height="345"/>
+									</noscript>
+								{% else %}
+									<img
+										src="{{G_IMGLINK_APP}}lazy.png"
+										data-src="{{content_list[i].content_thumb_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="172" height="101"/>
+									<noscript>
+									<img
+										src="{{content_list[i].content_thumb_url}}"
+										alt="{{content_list[i].content_title}}"
+										width="172" height="101"/>
+									</noscript>
+								{% endif %}
+							</figure>
+							<div class="slider-module-list-mask">
+								<div class="slider-module-list-title">
+									{{content_list[i].content_title|raw}}
+								</div>
+							</div>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+			<ul class="slider-module-box">
+				{% for i in 1..4 %}
+					<li>
+						<a target="_blank" rel="noopener noreferrer"
+							href="{{content_list[i].content_url}}"
+							title="{{content_list[i].content_title}}">
+							<figure class="slider-module-box-image">
+								<img
+									src="{{G_IMGLINK_APP}}lazy.png"
+									data-src="{{content_list[i].content_thumb_url}}"
+									alt="{{content_list[i].content_title}}"
+									width="172" height="101"/>
+								<noscript>
+								<img
+									src="{{content_list[i].content_thumb_url}}"
+									alt="{{content_list[i].content_title}}"
+									width="172" height="101"/>
+								</noscript>
+							</figure>
+							<div class="slider-module-box-mask">
+								<div class="slider-module-box-title">
+									{{content_list[i].content_title|raw}}
+								</div>
+							</div>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endif %}

@@ -1,0 +1,67 @@
+{% include 'block/block_reklam.twig' with {type : 'define_mobile_index' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin' }%}
+<div class="mobile-slider">
+	<ul id="mobile-slider-list" class="mobile-slider-list">
+		{% for i in 0..5 %}
+			<li>
+				<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+					<figure class="mobile-slider-list-image">
+						<img
+								src="{{content_list[i].content_image_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="100%" height="auto"
+						/>
+					</figure>
+
+					<div class="mobile-slider-list-overlay">
+						<div class="mobile-slider-list-title">
+							{{content_list[i].content_title|raw}}
+						</div>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<ul id="mobile-slider-list-pagination" class="mobile-slider-list-pagination">
+		{% for key,i in 0..5 %}
+			<li>
+				<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+					{{key+1}}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="mobile-news-wrapper">
+	<div class="mobile-title {{color}}"><span>{{sayfa_title}}</span></div>
+	<ul class="mobile-news-list-horizontal" id="results">
+		{% for i in 6..(content_list|length)-1 %}
+			<li>
+				<a
+					href="{{content_list[i].content_url}}"
+					title="{{content_list[i].content_title}}">
+					<figure class="mobile-news-list-horizontal-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{content_list[i].content_thumb_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="100%" height="auto"/>
+						<noscript>
+						<img
+							src="{{content_list[i].content_thumb_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="100%" height="auto"/>
+						</noscript>
+					</figure>
+					<div class="mobile-news-list-horizontal-title">
+						{{content_list[i].content_title|raw}}
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="loadMore" id="loadMore"><i class="icon">&#xe827;</i></div>
+{%include "ajax/ajax_page_load.twig" with {type:"cat"}%}
+

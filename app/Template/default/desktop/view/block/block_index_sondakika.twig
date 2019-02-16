@@ -1,0 +1,33 @@
+{% if content_list|length > 0 %}
+	<script src="{{G_JSLINK}}vendors/textEfect.js"></script>
+	<script>
+		/**
+		Required: Text Effect
+		*/
+
+		$(function ()
+		{
+			//son dakika efekti
+			textEfect();
+		});
+	</script>
+
+
+	<div id="last-minute" class="last-minute">
+		<span><i class="icon">&#xe82b;</i> Son Dakika </span>
+		<div class="last-minute-line">
+			<ul class="last-minute-list">
+				{% for item in content_list %}
+				<li>
+					<a target="_blank" rel="noopener noreferrer"
+						href="{{item.content_url}}"
+						title="{{item.content_title}}">
+						{{item.content_title|striptags}}
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<div class="last-minute-list-effect"></div>
+		</div>
+	</div>
+{% endif %}

@@ -1,0 +1,30 @@
+<div class="detail-page-tags">
+	<ul>
+		<li>
+			<div class="show-comment-button">
+				<span onclick="yorum_ac({{content.content_id}})"><i class="icon">&#xe813;</i> Yorumlar</span>
+			</div>
+		</li>
+		{% if content.content_cat > 0 %}
+		<li>
+			<a title="{{cat_name[content.content_cat]}}" href="{{cat_url[content.content_cat]}}">
+				<i class="icon">&#xe813;</i> {{cat_name[content.content_cat]}}
+			</a>
+		</li>
+		{% endif %}
+		{% if content.content_cat2 > 0 %}
+			<li>
+				<a title="{{cat_name[content.content_cat2]}}" href="{{cat_url[content.content_cat2]}}">
+					<i class="icon">&#xe813;</i> {{cat_name[content.content_cat2]}}
+				</a>
+			</li>
+		{% endif %}
+		{% for item in array_tags %}
+			{% if item != "" %}
+				<li>
+					<a title="{{item}}" href="{{LINK_TAGS}}{{item|trim|url_encode}}"><i class="icon">&#xe813;</i> {{item}}</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+</div>

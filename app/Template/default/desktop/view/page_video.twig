@@ -1,0 +1,161 @@
+<script>
+	/**
+	Required: utilCarousel
+	*/
+	$(function()
+	{
+		$('#photo-video-slider').utilCarousel(
+		{
+			breakPoints 	: [[1920, 1]],
+			mouseWheel		: false,
+			autoPlay		: true,
+			scrollPerPage	: true,
+			lazyLoad 		: false,
+			drag			: false,
+			touch			: false,
+			interval		: 4000,
+			showItems		: 1,
+			slideSpeed		: 1,
+			indexChanged : function(index)
+			{
+				$("#photo-video-slider-page li ").removeClass("active");
+				$("#photo-video-slider-page li:eq("+index+")").addClass("active");
+			}
+		});
+		$("#photo-video-slider-page li:eq(0)").addClass("active");
+		$('#photo-video-slider-page li').on('mouseout', function()  { $('#photo-video-slider').data('utilCarousel').play(); });
+		$('#photo-video-slider-page li').on('mouseover', function() { $('#photo-video-slider').data('utilCarousel').stop(); });
+	});
+	function VideoGoToSh(hsItem) { $('#photo-video-slider').data('utilCarousel').goTo(hsItem); }
+	function VideoMenuSh(){ $("#vgs-" + index  ).addClass("active"); }
+</script>
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_VIDEO}}", "name": "{{page_name.205}}" } }
+	]
+}
+</script>
+
+{% include 'block/block_reklam.twig' with {type : 'define_cat',cat_slug:'video' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead', cat_slug:'video' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin', cat_slug:'video'}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sol1', cat_slug:'video'}%}
+{% include 'block/block_reklam.twig' with {type : 'cat_sag1', cat_slug:'video'}%}
+
+<div class="video-container">
+	<div class="col-12">
+		<div class="headline-gallery">
+			<div class="headline-gallery-list">
+				<ul class="headline-gallery-list-item" id="photo-video-slider">
+					{% for i in 0..3 %}
+					<li>
+						<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+							<figure class="headline-gallery-list-image">
+								<img
+									src="{{content_list[i].content_image_url}}"
+									alt="{{content_list[i].content_title}}"
+									width="630" height="370"
+								/>
+							</figure>
+							<div class="headline-gallery-list-icon-video">
+								<i class="icon">&#xe832;</i>
+							</div>
+							<div class="headline-gallery-list-mask">
+								<div class="headline-gallery-list-title">
+									{{content_list[i].content_title|raw}}
+								</div>
+							</div>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+				<div class="headline-gallery-page" id="photo-video-slider-page">
+					<ul class="headline-gallery-page-list">
+						{% for i in 0..3 %}
+							<li id="vgs-{{i}}" onmouseover="VideoGoToSh({{i}});">
+								<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">{{i+1}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="headline-right-gallery">
+			<ul class="headline-gallery-page-list">
+				{% for i in 4..5 %}
+				<li>
+					<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+						<figure class="headline-right-gallery-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{content_list[i].content_thumb_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="320" height="188"/>
+							<noscript>
+							<img
+								src="{{content_list[i].content_thumb_url}}"
+								alt="{{content_list[i].content_title}}"
+								width="320" height="188"/>
+							</noscript>
+						</figure>
+						<div class="headline-right-gallery-icon">
+							<i class="icon">&#xe832;</i>
+						</div>
+						<div class="headline-right-gallery-mask">
+							<div class="headline-right-gallery-title">
+								{{content_list[i].content_title|raw}}
+							</div>
+						</div>
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% include 'block/block_reklam.twig' with {type : 'cat_manset_alti', cat_slug:'video' } %}
+
+<div class="col-12">
+	<div class="col-8">
+		<ul id="results" class="module-type-video-list">
+			{% for i in 6..(content_list|length)-1 %}
+			<li>
+				<a href="{{content_list[i].content_url}}" title="{{content_list[i].content_title}}">
+					<figure class="module-type-video-list-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{content_list[i].content_thumb_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="327" height="192"/>
+						<noscript>
+						<img
+							src="{{content_list[i].content_thumb_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="327" height="192"/>
+						</noscript>
+					</figure>
+					<div class="module-type-video-list-title">
+						{{content_list[i].content_title|raw}}
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		<div id="loadMore" class="load-more {{color}}"><i class="icon">&#xe827;</i></div>
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_sayfa_alti', cat_slug:'video' }%}
+
+	</div>
+	<aside class="col-4" id="aside-right">
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_2', cat_slug:'video' }%}
+		{% include 'block/block_aside_onecikanlar.twig' %}
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_3', cat_slug:'video' }%}
+	</aside>
+</div>
+{%include "ajax/ajax_page_load.twig" with {type:"video"}%}

@@ -1,0 +1,72 @@
+<script>
+	/**
+	Required: utilCarousel
+	*/
+
+	$(function()
+	{
+		/* Alt Manset Bir Slider */
+		$('.headline-small-list').utilCarousel(
+				{
+					breakPoints 	: [[1920, 1]],
+					mouseWheel		: false,
+					autoPlay		: true,
+					scrollPerPage	: true,
+					lazyLoad 		: false,
+					drag			: false,
+					touch			: false,
+					interval		: 4000,
+					showItems		: 1,
+					slideSpeed		: 1,
+					indexChanged : function(index)
+					{
+						$(".headline-small-pager li ").removeClass("active");
+						$(".headline-small-pager li:eq("+index+")").addClass("active");
+					}
+				});
+
+		$(".headline-small-pager li:eq(0)").addClass("active");
+		$('.headline-small-pager li').on('mouseout', function()  { $('.headline-small-list').data('utilCarousel').play(); });
+		$('.headline-small-pager li').on('mouseover', function() { $('.headline-small-list').data('utilCarousel').stop(); });
+
+		var small_headline = $('.headline-small-list').data('utilCarousel');
+	});
+
+	function goToSh(hsItem) { $('.headline-small-list').data('utilCarousel').goTo(hsItem); }
+	function menuSh(){ $("#hs-" + index  ).addClass("active"); }
+</script>
+
+<div class="headline-container">
+	<div class="headline-small">
+		<ul class="headline-small-list">
+			{% for item in content_list %}
+				<li>
+					<a target="_blank" rel="noopener noreferrer"
+						href="{{item.content_url}}">
+						<figure class="headline-small-list-image">
+							<img
+								src="{{item.content_image_url}}"
+								alt="{{item.content_title}}"
+								width="425" height="250"
+							/>
+						</figure>
+						<div class="headline-small-category">
+							<span class="cat-{{item.content_cat}}">{{cat_name[item.content_cat]}}</span>
+						</div>
+						<div class="headline-small-title">
+							{{item.content_title|raw}}
+						</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<ul class="headline-small-pager">
+			{% for k, item in content_list %}
+				<li id="hd-{{k}}" onmouseover="goToSh({{k}});">
+					<a target="_blank" rel="noopener noreferrer" href="{{item.content_url}}"> {{k+1}} </a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+

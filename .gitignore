@@ -1,0 +1,7 @@
+cache/
+assets/uploads/
+assets/uploads_thumbs/
+.idea/
+Doc/
+Converter/archive/
+*.log

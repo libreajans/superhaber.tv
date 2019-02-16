@@ -1,0 +1,40 @@
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{page_url[201]}}", "name": "{{page_name[201]}}" } }
+	]
+}
+</script>
+
+<main class="page-container">
+	<div class="col-8">
+		<div class="contact-form">
+			<div class="contact-title">İletişim Formu</div>
+			{% if islem_bilgisi != "" %} {{islem_bilgisi|raw}} {% endif %}
+			{% if commented != 1%}
+				<form method="post" action="{{LINK_CONTACT}}" name="form1" class="form1">
+					<input type="hidden" name="action" value="message"/>
+					<span>Ad Soyad: </span>
+					<span><input required type="text" name="contact_name" id="contact_name" placeholder="Adınız Soyadınız" class="contact-input" value="{{contact_name}}"/></span>
+					<span>E-posta : </span>
+					<span><input required type="email" name="contact_email" id="contact_email" placeholder="E-posta Adresiniz"  class="contact-input" value="{{contact_email}}"/></span>
+					<span>Mesaj : </span>
+					<span><textarea required placeholder="Mesajınız" name="contact_message" id="contact_message" class="text-input">{{contact_message|raw}}</textarea></span>
+					<span><button class="send-button" type="submit">Gönder</button></span>
+				</form>
+			{% endif %}
+		</div>
+	</div>
+	<div class="col-8">
+		<div class="contact-info">
+			<div class="contact-title">İletişim Bilgileri</div>
+			<p><b>Adres : </b> {{L.pIletisim_ContactAddress|raw}}</p>
+			<p><b>Tel :</b> {{L.pIletisim_ContactPhone}} </p>
+			<p><b>E-Posta :</b> <a href="mailto:{{L.pIletisim_ContactMail}}">{{L.pIletisim_ContactMail}}</a> </p>
+		</div>
+	</div>
+</main>
+

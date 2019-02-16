@@ -1,0 +1,105 @@
+<script>
+
+	/**
+	Required: utilCarousel
+	*/
+
+	$(function()
+	{
+		$('#category-slider').utilCarousel(
+				{
+					breakPoints 	: [[1920, 1]],
+					mouseWheel		: false,
+					autoPlay		: true,
+					scrollPerPage	: true,
+					lazyLoad 		: false,
+					drag			: false,
+					touch			: false,
+					interval		: 4000,
+					showItems		: 1,
+					slideSpeed		: 1,
+					indexChanged : function(index)
+					{
+						$("#category-slider-page li ").removeClass("active");
+						$("#category-slider-page li:eq("+index+")").addClass("active");
+					}
+				});
+
+		$("#category-slider-page li:eq(0)").addClass("active");
+		$('#category-slider-page li').on('mouseout', function()  { $('#category-slider').data('utilCarousel').play(); });
+		$('#category-slider-page li').on('mouseover', function() { $('#category-slider').data('utilCarousel').stop(); });
+
+	});
+
+	function categorySlidergoGoTo(frmAti) { $('#category-slider').data('utilCarousel').goTo(frmAti); }
+	function categorySliderMenuAlt(){ $("#cs-" + index  ).addClass("active"); }
+</script>
+
+<div class="module-container">
+	<div class="module-title {{p_color}}">
+		<span><a href="{{p_url}}">{{p_title}}</a></span>
+	</div>
+	<div class="slider-module-category">
+		<ul class="category-slider-list" id="category-slider">
+			{% for i in 0..4 %}
+			<li>
+				<a
+					href="{{content_list[i].content_url}}"
+					title="{{content_list[i].content_title}}">
+					<figure class="slider-module-list-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{content_list[i].content_image_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="588" height="345"/>
+						<noscript>
+						<img
+							src="{{content_list[i].content_image_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="588" height="345"/>
+						</noscript>
+					</figure>
+					<div class="slider-module-list-mask">
+						<div class="slider-module-list-title">
+							{{content_list[i].content_title|raw}}
+						</div>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		<ul class="category-slider-page" id="category-slider-page">
+			{% for i in 0..4 %}
+				<li>
+					<a href="{{content_list[i].content_url}}" id="cs-{{i+1}}" onmouseover="categorySlidergoGoTo( {{i}} );">{{i+1}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<ul class="slider-module-line">
+		{% for i in 5..7 %}
+			<li>
+				<a
+					href="{{content_list[i].content_url}}"
+					title="{{content_list[i].content_title}}">
+					<figure class="slider-module-line-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{content_list[i].content_thumb_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="179" height="105"/>
+						<noscript>
+						<img
+							src="{{content_list[i].content_thumb_url}}"
+							alt="{{content_list[i].content_title}}"
+							width="179" height="105"/>
+						</noscript>
+					</figure>
+					<div class="slider-module-line-title">
+						{{content_list[i].content_title|raw}}
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

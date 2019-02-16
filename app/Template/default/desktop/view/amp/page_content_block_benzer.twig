@@ -1,0 +1,15 @@
+{% for item in content_inline_benzer %}
+	<div class="related-news">
+		<a
+			href="{{item.content_url}}-amp" title="{{item.content_title}}">
+			<figure class="related-news-image">
+				<img
+					src="{{item.content_thumb_url}}"
+					alt="{{item.content_title}}"
+					width="250" height="147"
+				/>
+			</figure>
+			<div class="related-news-title">{{item.content_title|raw}}</div>
+		</a>
+	</div>
+{% endfor %}

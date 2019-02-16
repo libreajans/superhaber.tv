@@ -1,0 +1,217 @@
+<!doctype html>
+<html amp lang="tr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+		<meta property="og:description" content="{{content.content_title}}">
+		<meta name="description" content="">
+		<title>{{content.content_title}} - {{cat_name[content.content_cat]}} </title>
+		<link rel="shortcut icon" type="image/png" href="{{G_IMGLINK_APP}}favicon.png" sizes="32x32">
+		<link rel="canonical" href="{{content.content_url}}"/>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
+		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+		<style amp-custom>
+			body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, main, textarea {margin: 0; padding: 0; border: 0; box-sizing: border-box}
+			body {background-color: white; font-family:"Ubuntu",sans-serif}
+			ul {padding: 0}
+			ol, ul {list-style: none}
+			a {color: inherit; text-decoration: none}
+			figure{margin: 0; position:relative; margin-bottom:1.2rem}
+			figure figcaption{position:absolute; bottom:0; left:0; width:100%; z-index:1; color:#fff; background-color: rgba(0,0,0,.6); padding: 5px; font-size:20px}
+			h1 {font-weight:700; font-size: 25px; margin: 12px 0; line-height:1.2}
+			h2 {font-weight:400; font-size: 15px; margin-bottom: 12px; line-height:1.4}
+			h3 {font-weight:500; font-size: 17px; line-height:1.4; margin-top:5px; color: #bf0000}
+			figcaption h5 {font-weight:500; font-size: 14px; line-height:1.4; margin-top:5px; color: #fff}
+			main {padding: 20px}
+			header {background-color: #bf0000; height: 60px; padding: 7px 0; text-align: center}
+			aside {clear:both}
+			aside h4{font-size:20px; color: #fff; padding: .6rem 0; border-bottom:1px solid #eee; margin-bottom: 1.2rem}
+			footer{clear:both; text-align:center; background-color: #333; color: #fff; padding: 1.2rem; font-size:1rem}
+			footer p{display:block; margin-bottom:.6rem}
+			article{margin-bottom: 2.4rem}
+			blockquote {clear:both; background: #f9f9f9; border-left: 10px solid #ccc; margin: 1.5em 10px; padding: 0.5em 10px; quotes: "\201C""\201D""\2018""\2019"}
+			blockquote:before {color: #ccc; content: open-quote; font-size: 4em; line-height: 0.1em; margin-right: 0.25em; vertical-align: -0.4em}
+			blockquote p {}
+			.content p {margin-top:15px; font-weight:400; line-height:1.4}
+			.share {float:left; height: 50px; width: 100%; margin-bottom: 10px}
+			.share svg {fill: #fff; margin-top: 6px; padding-right: .8rem}
+			.share li {float: left; width: 33.3%; height: 40px}
+			.share li a{display: inline-block; padding: 0 10px; color: #fff; line-height: 40px; font-size:13px; font-weight:300}
+			.share li:nth-child(1) {background-color: #3b5998}
+			.share li:nth-child(2) {background-color: #00aced} .share li:nth-child(3) {background-color: #dd4b39}
+			.detail-image {float:left; width: 100%; margin-bottom: 20px}
+			.center {margin: 0 auto}
+			.hideMe {display:none}
+			.full-link {position: absolute; z-index: 4; top: 0; left: 0; width: 100%; height: 100%}
+			.related-news {float:left; margin: 10px 0; border:1px solid #ddd; padding: 10px; width: 100%}
+			.related-news-image {float:left; width: 100%; height: auto}
+			.related-news-image img {width: 100%; height: auto}
+			.related-news-title {float:left; overflow:hidden; width: 100%; font-size:18px; font-weight:600; color: #333; line-height: 22px; margin: 5px 0}
+			.related-news-text {float:left; overflow:hidden; width: 100%; font-size:13px; font-weight:400; color: #333; height: 113px; margin: 0}
+ 			.author-diger{margin: 20px 0px 5px 0px; position:relative}
+			.author-diger .full-link-makale {width: 100%; clear:both; font-weight:400; font-size: 15px; margin: 12px 0px; line-height:1.4}
+			.reddot {float: left; width: 10px; height: 10px; background: #bf0000; border-radius: 17px; margin-top: 5px; margin-right: 6px}
+			.ustbaslik {float: left; width: 100%; font-size: 20px; color: #bf0000; font-weight: 700; padding: 0px 0px 10px 0px}
+			.detail-gallery-title {font-size:25px; color: #333}
+			.detail-gallery-desc {font-size:14px}
+			.detail-gallery-list-text,
+			.detail-gallery-list-text p,
+			.detail-gallery-list-text div,
+			.detail-gallery-list-text {width: 100%; font-size: 15px; line-height:1.6; font-weight: 400; color: #333; margin-bottom: 15px}
+			.detail-gallery-list {float: left; width: 100%; border-top: 5px solid #ddd; padding: 10px 0px 10 0px}
+			.detail-gallery-list li {float: left; width: 100%; padding: 5px 0; border-bottom: 5px solid #ddd}
+			.reklam_300x250 {clear:both; margin-bottom: 25px}
+			.reklam_320x100 {clear:both; margin-bottom: 5px}
+			.detail-content-extra { clear:both; width: 100%; height:35px; padding: 10px 0px 5px 0px }
+			.detail-content-extra ul li { float: left; margin-right: 10px; font-size: 13px; color: #555}
+			.videoBoxDetay { width: 100%; float: left; margin: 10px 0px; color: #fff; font-size: 15px; line-height: 20px; font-weight: 400; background: #bf0000; padding:10px 15px}
+		</style>
+		<script async src="https://cdn.ampproject.org/v0.js"></script>
+		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+		<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+		<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/amp-vimeo-0.1.js"></script>
+		<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
+		<script async custom-element="amp-dailymotion" src="https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js"></script>
+		<script async custom-element="amp-soundcloud" src="https://cdn.ampproject.org/v0/amp-soundcloud-0.1.js"></script>
+		<script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
+
+		{% if content.content_template == 0 %}
+			<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "NewsArticle",
+				"inLanguage":"tr-TR",
+				"headline": "{{content.content_title}}",
+				"description": "{{content.content_desc}}",
+				"datePublished": "{{content.content_time|date("Y-m-dTH:i")}}",
+				"dateModified": "{{content.change_time|date("Y-m-dTH:i")}}",
+				"mainEntityOfPage":{"@type":"WebPage", "@id":"{{site_canonical}}"},
+				"image": {"@type": "ImageObject", "url": "{{content.content_image_url}}", "height": 800, "width": 800},
+				"publisher": {"@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": {"@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60}},
+				"author": {"@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": {"@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60}}
+			}
+			</script>
+
+			<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{"@type": "ListItem", "position": 1, "item": {"@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+					{"@type": "ListItem", "position": 2, "item": {"@id": "{{cat_url[content.content_cat]}}", "name": "{{cat_name[content.content_cat]}}"}},
+					{"@type": "ListItem", "position": 3, "item": {"@id": "{{site_canonical}}", "name": "{{content.content_title}}"}}
+				]
+			}
+			</script>
+
+		{% endif %} {#haber#}
+
+		{% if content.content_template == 1 %}
+			<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "NewsArticle",
+				"inLanguage":"tr-TR",
+				"headline": "{{content.content_title}}",
+				"description": "{{content.content_desc}}",
+				"datePublished": "{{content.content_time|date("Y-m-dTH:i")}}",
+				"dateModified": "{{content.change_time|date("Y-m-dTH:i")}}",
+				"mainEntityOfPage":{"@type":"WebPage", "@id":"{{site_canonical}}"},
+				"image": {"@type": "ImageObject", "url": "{{content.content_image_url}}", "height": 800, "width": 800},
+				"publisher": {"@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": {"@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60}},
+				"author": {"@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": {"@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60}}
+			}
+			</script>
+
+			<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{"@type": "ListItem", "position": 1, "item": {"@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+					{"@type": "ListItem", "position": 2, "item": {"@id": "{{cat_url[content.content_cat]}}", "name": "{{cat_name[content.content_cat]}}"}},
+					{"@type": "ListItem", "position": 3, "item": {"@id": "{{site_canonical}}", "name": "{{content.content_title}}"}}
+				]
+			}
+			</script>
+
+		{% endif %} {#galeri#}
+
+		{% if content.content_template == 3 %}
+
+			<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "NewsArticle",
+				"inLanguage":"tr-TR",
+				"headline": "{{content.content_title}}",
+				"description": "{{content.content_desc}}",
+				"datePublished": "{{content.content_time|date("Y-m-dTH:i")}}",
+				"dateModified": "{{content.change_time|date("Y-m-dTH:i")}}",
+				"mainEntityOfPage":{"@type":"WebPage", "@id":"{{site_canonical}}"},
+				"image": {"@type": "ImageObject", "url": "{{content.content_image_url}}", "height": 800, "width": 800},
+				"publisher": {"@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": {"@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60}},
+				"author": {"@type": "Organization", "name": "{{L.pIndex_Company}}", "logo": {"@type": "ImageObject", "url": "{{G_IMGLINK_APP}}logo_sh.png", "width": 120, "height": 60}}
+			}
+			</script>
+
+			<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{"@type": "ListItem", "position": 1, "item": {"@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+					{"@type": "ListItem", "position": 2, "item": {"@id": "{{LINK_AUTHOR}}", "name": "Yazarlar"}},
+					{"@type": "ListItem", "position": 3, "item": {"@id": "{{author_info.author_url}}", "name": "{{author_info.author_name}}"}},
+					{"@type": "ListItem", "position": 4, "item": {"@id": "{{site_canonical}}", "name": "{{content.content_title}}"}}
+				]
+			}
+			</script>
+
+		{% endif %} {#makale#}
+
+	</head>
+	<body>
+		<amp-analytics type="googleanalytics" id="analytics1">
+			<script type="application/json">
+			{
+				"vars": {"account": "UA-53462249-1"},
+				"triggers": {"trackPageview": {"on": "visible", "request": "pageview", "vars": {"title": "{{content.content_title}}", "ampdocUrl": "{{content.content_url}}"}}}
+			}
+			</script>
+		</amp-analytics>
+
+        <amp-analytics id="analytics2">
+            <script type="application/json">
+            {
+                "requests": {"pageview": "{{content.content_url_https}}"},
+                "triggers": {"trackPageview": {"on": "visible", "request": "pageview"}}
+           }
+            </script>
+        </amp-analytics>
+
+		<header>
+			<a href="{{LINK_INDEX}}">
+				<amp-img src="{{G_IMGLINK_APP}}logo_red.png" alt="logo" width="164" height="45" class="center"></amp-img>
+			</a>
+		</header>
+
+		{% include 'block/block_reklam.twig' with {type : 'amp_reklam_320x100' }%}
+
+		<main>
+			{% if content.content_template == 0 %} {% include 'amp/_amp_detail_0.twig'  %} {% endif %} {#haber#}
+			{% if content.content_template == 1 %} {% include 'amp/_amp_detail_1.twig'  %} {% endif %} {#galeri#}
+			{% if content.content_template == 3 %} {% include 'amp/_amp_detail_3.twig'  %} {% endif %} {#makale#}
+		</main>
+		<footer>
+			<amp-img src="{{G_IMGLINK_APP}}logo.png" alt="logo" width="125" height="23" class="center"></amp-img>
+			<p>{{L.pIndex_CompanyLink}}</p>
+			<p>Copyright &copy; {{"now"|date("Y")}}</p>
+			<p>Tüm hakları saklıdır</p>
+		</footer>
+	</body>
+</html>

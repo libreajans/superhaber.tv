@@ -1,0 +1,155 @@
+{% if cat_slug == 'gundem' %}
+	{%  set pageID = 848623  %}
+{% elseif cat_slug == 'spor' %}
+	{%  set pageID = 848624  %}
+{% elseif cat_slug == 'magazin' %}
+	{%  set pageID = 848625  %}
+{% elseif cat_slug == 'ekonomi' %}
+	{%  set pageID = 848626  %}
+{% elseif cat_slug == 'seyahat' %}
+	{%  set pageID = 848627  %}
+{% elseif cat_slug == 'authors' %}
+	{%  set pageID = 848628  %}
+{% elseif cat_slug == 'gallery' %}
+	{%  set pageID = 848629  %}
+{% elseif cat_slug == 'video' %}
+	{%  set pageID = 848630  %}
+{% else %}
+	{%  set pageID = 848631  %}
+{% endif %}
+
+{% if type == "define_anasayfa" and ads_status == 1 %}
+	<script type="application/javascript" src="//ced.sascdn.com/tag/1543/smart.js" ></script>
+	<script type="application/javascript">
+		var sas = sas || {};
+		sas.cmd = sas.cmd || [];
+		sas.cmd.push(function() {
+			sas.setup({ networkid: 1543, domain: "//www3.smartadserver.com", async: true });
+		});
+		sas.cmd.push(function() {
+			sas.call("onecall", {
+				siteId: 94371,
+				pageId: 848622, //861058 demo sayfa için silmeyelim..
+				formatId: "35066,35072,41498,59233",
+				target: ''
+			});
+		});
+
+	</script>
+{% endif %}
+
+{% if ads_status == 1 %}
+	{% if type == "define_cat" %}
+		<script type="application/javascript" src="//ced.sascdn.com/tag/1543/smart.js" ></script>
+		<script type="application/javascript">
+			var sas = sas || {};
+			sas.cmd = sas.cmd || [];
+			sas.cmd.push(function() {
+				sas.setup({ networkid: 1543, domain: "//www3.smartadserver.com", async: true });
+			});
+			sas.cmd.push(function() {
+				sas.call("onecall", {
+					siteId: 94371,
+					pageId: {{pageID}},
+					formatId: "35066,35072,35067,35077,41498,35071,59234,59233",
+					target: ''
+				});
+			});
+
+		</script>
+	{% endif %}
+
+	{% if type == "anasayfa_masthead" %}
+		<div id="sas_41498" class="reklam masthead"></div>
+		<script> sas.cmd.push(function() { sas.render("41498"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_masthead" %}
+		<div class="reklam masthead" id="sas_41498"></div>
+		<script> sas.cmd.push(function() { sas.render("41498"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_masthead_infinity" %}
+		<div class="reklam masthead" id="sas_59233"></div>
+		<script> sas.cmd.push(function() { sas.render("59233"); }); </script>
+	{% endif %}
+
+	{% if type == "anasayfa_pageskin" %}
+		<style> .sph_anasayfa_pageskin iframe{width:100%;height:1080px;position:fixed;top:100px;} </style>
+		<div id="sas_35072" class="reklam sph_anasayfa_pageskin"></div>
+		<script> sas.cmd.push(function() { sas.render("35072"); }); </script>
+	{% endif %}
+
+	{% if type == "anasayfa_sag1" %}
+		<div id="sas_35066" class="reklam sag1-afis"></div>
+		<script> sas.cmd.push(function() { sas.render("35066"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_pageskin" %}
+		<style> .sph_{{cat_slug}}_pageskin iframe{width:100%;height:1080px;position:fixed;top:90px;} </style>
+		<div id="sas_35072" class="reklam sph_{{cat_slug}}_pageskin"></div>
+		<script> sas.cmd.push(function() { sas.render("35072"); }); </script>
+	{% endif %}
+
+	{% if type == "anasayfa_manset_alti" %}
+		<div id="sas_59233" class="reklam masthead"></div>
+		<script> sas.cmd.push(function() { sas.render("59233"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_manset_alti" %}
+		<div class="reklam masthead" style="margin-top:10px; margin-bottom: 10px; text-align: center"><div id="sas_41498"></div></div>
+		<script> sas.cmd.push(function() { sas.render("41498"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_sayfa_alti" %}
+		<div class="reklam" id="sas_35071"></div>
+		<script> sas.cmd.push(function() { sas.render("35071"); }); </script>
+	{% endif %}
+	{% if type == "cat_sayfa_alti_infinity" %}
+		<div class="reklam" id="sas_59234"></div>
+		<script> sas.cmd.push(function() { sas.render("59234"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_sag1" %}
+		<div class="reklam sag1-afis" id="sas_35066"></div>
+		<script> sas.cmd.push(function() { sas.render("35066"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_sag_2" %}
+		<div class="reklam" style="margin-bottom: 10px;" id="sas_35067"></div>
+		<script> sas.cmd.push(function() { sas.render("35067"); }); </script>
+	{% endif %}
+
+	{% if type == "cat_sag_3" %}
+		<div class="reklam" id="sas_35077"></div>
+		<script> sas.cmd.push(function() { sas.render("35077"); }); </script>
+	{% endif %}
+
+	{% if type == "amp_reklam_300x250" %}
+		<div class="reklam_300x250">
+			<amp-ad
+			layout=responsive
+			width=300 height=250
+			type="smartadserver"
+			data-site="94371"
+			data-page="848632"
+			data-format="35067"
+			data-domain="https://www3.smartadserver.com"></amp-ad>
+		</div>
+	{% endif %}
+
+	{% if type == "amp_reklam_320x100" %}
+		<div class="reklam_320x100">
+			<amp-ad
+				layout=responsive
+				width=320 height=100
+				type="smartadserver"
+				data-site="94371"
+				data-page="848632"
+				data-format="35560"
+				data-domain="https://www3.smartadserver.com"></amp-ad>
+		</div>
+	{% endif %}
+
+
+{% endif %}

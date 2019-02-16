@@ -1,0 +1,38 @@
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_TAGS}}{{etiket|url_encode}}", "name": "{{etiket|title}}" } }
+	]
+}
+</script>
+<div class="col-12">
+	<div class="breadcrumb">
+		<ul>
+			<li>
+				<a href="{{LINK_INDEX}}" title="Ana Sayfa">
+					<i class="icon">&#xe80b;</i> Ana Sayfa
+				</a>
+			</li>
+			<li>
+				<i class="icon">&#xe814;</i> "{{etiket|title}}" etiketi için sonuçlar
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="col-12">
+	<div class="category-wrapper">
+		<div class="col-8">
+			<ul id="results" class="module-type-category">
+				{% include "ajax/ajax_page_content.twig" %}
+			</ul>
+			<div id="loadMore" class="load-more cat-101"><i class="icon">&#xe827;</i></div>
+		</div>
+		<aside class="col-4" id="aside-right">
+			{% include 'block/block_aside_onecikanlar.twig' %}
+		</aside>
+	</div>
+</div>
+{%include "ajax/ajax_page_load.twig" with {type:"etiket"}%}

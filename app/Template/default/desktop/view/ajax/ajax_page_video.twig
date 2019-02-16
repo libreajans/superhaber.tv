@@ -1,0 +1,24 @@
+{% for item in content_list %}
+	<li>
+		<a
+			target="_blank" rel="noopener noreferrer"
+			href="{{item.content_url}}" title="{{item.content_title}}">
+			<figure class="module-type-video-list-image">
+				<img
+					src="{{G_IMGLINK_APP}}lazy.png"
+					data-src="{{item.content_thumb_url}}"
+					alt="{{item.content_title}}"
+					width="327" height="192"/>
+				<noscript>
+				<img
+					src="{{item.content_thumb_url}}"
+					alt="{{item.content_title}}"
+					width="327" height="192"/>
+				</noscript>
+			</figure>
+			<div class="module-type-video-list-title">
+				{{item.content_title|raw}}
+			</div>
+		</a>
+	</li>
+{% endfor %}

@@ -1,0 +1,62 @@
+<article>
+	{% if content.content_title_outside != '' %}
+		<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+	{% endif %}
+	<h1 class="detail-gallery-title">{{content.content_title}}</h1>
+	<h2 class="detail-gallery-desc hideMe">{{content.content_desc|raw}}</h2>
+
+	<div class="detail-content-extra">
+		<ul>
+			<li><time>{{content.content_time|date("d.m.Y H:i")}}</time></li>
+			<li>&raquo;</li>
+			<li><a href="{{cat_url[content.content_cat]}}" title="{{cat_name[content.content_cat]}}">{{cat_name[content.content_cat]}}</a></li>
+		</ul>
+	</div>
+
+	{% include 'block/block_reklam.twig' with {type : 'amp_reklam_300x250' }%}
+
+	<amp-img
+		src="{{content.content_image_url}}"
+		alt="{{content.content_title}}"
+		width="630" height="370" layout="responsive">
+	</amp-img>
+
+	{% include 'amp/_amp_share.twig'  %}
+
+
+	<div class="content-gallery">
+		<ul class="detail-gallery-list">
+			{% for k, item in gallery %}
+				<li>
+					<div class="detail-gallery-list-text"> {{item.photo_text|raw}} </div>
+					<figure class="detail-gallery-list-image">
+						<amp-img
+							src="{{item.photo_image_url}}"
+							alt="{{item.photo_text|striptags}}"
+							title="{{content.content_title}} - {{k+1}}. resim"
+							width="{{item.photo_width}}"
+							height="{{item.photo_height}}"
+							layout="responsive"></amp-img>
+					</figure>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</article>
+
+<aside>
+	<header>
+		<h4>ÖNE ÇIKANLAR</h4>
+	</header>
+	{% for item in smilar %}
+		<figure>
+			<a class="full-link" href="{{item.content_url}}"></a>
+			<amp-img src="{{item.content_thumb_url}}" alt="{{item.content_title}}" width="350" height="186" layout="responsive"></amp-img>
+			<figcaption>
+				<h5>
+					{{item.content_title|raw}}
+				</h5>
+			</figcaption>
+		</figure>
+	{% endfor %}
+</aside>

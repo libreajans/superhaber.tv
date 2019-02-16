@@ -1,0 +1,90 @@
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_SITENE_EKLE}}", "name": "Sitene Ekle" } }
+	]
+}
+</script>
+
+<main class="page-container">
+    <div class="col-12">
+        <div class="page-title">
+            <h1>Sitene Ekle</h1>
+            <p>Superhaber.tv haberlerini sitenize istediğiniz kategoride ekleyebilirsiniz.</p>
+        </div>
+        <div class="page-body">
+			{# 1. set #}
+            <div class="widget-box">
+                <div class="widget-title">Manşet Haberleri</div>
+                {{code_manset|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_manset}}</textarea>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">Gündem Haberleri</div>
+                {{code_gundem|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_gundem}}</textarea>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">Spor Haberleri</div>
+                {{code_spor|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_spor}}</textarea>
+            </div>
+
+            <div style="clear:both;"></div>
+
+			{# 2. set #}
+            <div class="widget-box">
+                <div class="widget-title">Magazin Haberleri</div>
+                {{code_magazin|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_magazin}}</textarea>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">Ekonomi Haberleri</div>
+                {{code_ekonomi|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_ekonomi}}</textarea>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">Seyahat Haberleri</div>
+                {{code_seyahat|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_seyahat}}</textarea>
+            </div>
+
+            <div style="clear:both;"></div>
+
+			{# 3. set #}
+            <div class="widget-box">
+                <div class="widget-title">TV Haberleri</div>
+                {{code_tv|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_tv}}</textarea>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">Teknoloji Haberleri</div>
+                {{code_teknoloji|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_teknoloji}}</textarea>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">Superhaber.tv Röportajları</div>
+                {{code_roportaj|raw}}
+                <span>Html Kodu : </span>
+                <textarea name="widget_code" readonly id="widget_code" class="widget-code" rows="10">{{code_roportaj}}</textarea>
+            </div>
+		</div>
+    </div>
+</main>

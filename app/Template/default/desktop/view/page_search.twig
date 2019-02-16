@@ -1,0 +1,67 @@
+{% if keyword != '' %}
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa" } },
+			{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_SEARCH}}", "name": "Arama" } },
+			{ "@type": "ListItem", "position": 3, "item": { "@id": "{{LINK_SEARCH}}/{{keyword}}", "name": "{{keyword|raw}}" } }
+		]
+	}
+	</script>
+{% else %}
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa" } },
+			{ "@type": "ListItem", "position": 2, "item": { "@id": "{{LINK_SEARCH}}", "name": "Arama" } }
+		]
+	}
+	</script>
+{% endif %}
+
+<div class="col-12">
+	<div class="breadcrumb">
+		<ul>
+			<li>
+				<a href="{{LINK_INDEX}}" title="Ana Sayfa">
+					<i class="icon">&#xe80b;</i> Ana Sayfa
+				</a>
+			</li>
+			<li>
+				<a href="{{LINK_SEARCH}}" title="Arama">
+					<i class="icon">&#xe829;</i> Arama
+				</a>
+			</li>
+			{% if keyword != '' %}
+				<li>
+					<i class="icon">&#xe800;</i> "{{keyword|raw}}" araması için bulunan sonuçlar
+				</li>
+			{% else %}
+				<li>
+					<i class="icon">&#xe800;</i> Aramak istediğiniz kelimeyi giriniz
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</div>
+
+<div class="col-12">
+	<div class="category-wrapper">
+		<div class="col-8">
+			<form method="post" action="{{LINK_SEARCH}}" class="search-form">
+				<input type="text" class="search-form-input" name="search" placeholder="Haber ara..." required />
+				<input type="submit" class="search-form-input-button" name="search-button" value="Ara"/>
+			</form>
+			<ul class="module-type-category">
+				{% include "ajax/ajax_page_content.twig" %}
+			</ul>
+		</div>
+		<aside class="col-4" id="aside-right">
+			{% include 'block/block_aside_onecikanlar.twig' %}
+		</aside>
+	</div>
+</div>

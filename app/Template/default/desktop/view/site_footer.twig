@@ -1,0 +1,80 @@
+		<footer>
+			{% if( sayfaadi == 'index') %}
+				<div class="footer-category">
+					<div class="col-12">
+						<div class="footer-category-container">
+							<div class="open-footer-icon">
+								<i class="icon">&#xe827;</i>
+							</div>
+							<div class="footer-title"><i class="icon">&#xe82c;</i> Popüler Haberler</div>
+							<ul class="footer-category-list">
+								 {% for item in footer_block_seo %}
+									<li>
+										<a target="_blank" rel="noopener noreferrer" href="{{item.content_url}}">
+											<i class="icon">&#xf105;</i> {{item.content_title|raw}}
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="footer-information">
+				<div class="col-12">
+					<div class="footer-col">
+						<div>Kategoriler</div>
+						<ul class="footer-category-lists">
+							{% for key in cat_url|keys %}
+								<li><a href="{{cat_url[key]}}" title="{{cat_name[key]}}">{{cat_name[key]}}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="footer-col">
+						<div>Kurumsal</div>
+						<ul class="footer-item-list">
+							{% for key in page_url|keys %}
+								<li><a href="{{page_url[key]}}" title="{{page_name[key]}}">{{page_name[key]}}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+
+					<div class="footer-col">
+						<div>Sosyal Medya</div>
+						<ul class="footer-item-list">
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.facebook}}" title="Facebook"> <i class="icon">&#xf09a;</i> Facebook </a> </li>
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.twitter}}" title="Twitter"> <i class="icon">&#xf099;</i> Twitter </a> </li>
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.google}}" title="Google+"> <i class="icon">&#xf0d5;</i> Google+ </a> </li>
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.instagram}}" title="Instagram"> <i class="icon">&#xf16d;</i> Instagram </a> </li>
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.youtube}}" title="YouTube"> <i class="icon">&#xf16a;</i> YouTube </a> </li>
+							<li> <a href="{{social_media.feed}}" title="Feed"> <i class="icon">&#xf09e;</i> RSS </a> </li>
+						</ul>
+						<div class="footer-uygulamalarimiz">Uygulamalarımız</div>
+						<ul class="footer-item-list">
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.applink_ios}}" title="IOS Uygulamamız"> IOS</a> </li>
+							<li> <a target="_blank" rel="external noopener noreferrer" href="{{social_media.applink_android}}" title="Android Uygulamamız">Android</a> </li>
+						</ul>
+					</div>
+					<div class="footer-bottom">
+						<div class="footer-bottom-col">
+							<figure class="footer-logo">
+								<img src="{{G_IMGLINK_APP}}logo.png" width="135" height="25" alt="{{L.pIndex_CompanyLink}}"/>
+								<figcaption>
+									Copyright &copy; {{year}} - Tüm hakları saklıdır. {{L.pIndex_CompanyLink}}
+								</figcaption>
+							</figure>
+						</div>
+						<div class="footer-bottom-col">
+							<div class="author">
+								<a target="_blank" rel="external noopener noreferrer" href="http://www.elluga.com">
+									Yazılım Geliştirme ve Sistem Destek
+									<span><img src="{{G_IMGLINK_APP}}elluga-logo.png" width="43" height="18" alt="Elluga Logo"/></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

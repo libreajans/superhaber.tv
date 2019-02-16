@@ -1,0 +1,62 @@
+<!-- Yorum Blok -->
+<div class="yorum-blok comments-{{content.content_id}}" style="display:none;">
+
+	{% if content.content_comment_status == 0 %}
+		<div class="contact-message cat-101"><i class="icon">&#xe808;</i> Bu içerik yorumlara kapalıdır.</div>
+	{% endif %}
+
+	{% if content.content_comment_status == 1 %}
+
+		<div id="title-comment-{{content.content_id}}" class="contact-message cat-102" style="display:block">
+			<i class="icon">&#xe807;</i> Üye olmadan yorum yazabilirsiniz.
+		</div>
+
+		<div id="result-comment-{{content.content_id}}" class="contact-message cat-102" style="display:none">
+			<i class="icon">&#xe807;</i> Yorum için teşekkür ederiz.
+		</div>
+
+		<div id="write-comment-{{content.content_id}}" class="write-comment">
+			<div class="comment-title"> <i class="icon">&#xe817;</i> Yorum Yap </div>
+			<input type="hidden" id="comment_to_date-{{content.content_id}}" name="comment_to_date" value="{{comment_to_date}}"/>
+			<input type="hidden" id="comment_to_hash-{{content.content_id}}" name="comment_to_hash" value="{{comment_to_hash}}"/>
+			<span>
+				<textarea id="yorum-{{content.content_id}}" name="yorum" placeholder="Yorumunuz" required></textarea>
+			</span>
+			<span>
+				<input id="isim-{{content.content_id}}" type="text" name="isim" placeholder="Adınız Soyadınız" required>
+			</span>
+			<span>
+				<button type="submit" onclick="yorum_gonder({{content.content_id}})">Gönder</button>
+			</span>
+		</div>
+
+		{% if comment_list|length > 0 %}
+			<div class="comments-list">
+				<div class="comment-title"><i class="icon">&#xe818;</i>Yorumlar</div>
+				<div class="comment-list-slider">
+					<ul class="comment-list comment-list-{{content.content_id}}">
+						{% for item in comment_list %}
+							<li>
+								<div class="comment-name">
+									{% if admin == 1 %}
+										<a title="Yorumu Düzenle" style="float:left;" href="{{link_comment_edit}}{{item.comment_id}}">
+											&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;
+										</a>
+									{% endif %}
+									{{item.comment_author}}
+									<time class="comment-date" datetime="{{item.create_time|date("Y.m.d H:i")}}">
+										<i class="icon">&#xe82b;</i> {{item.create_time|date("Y.m.d H:i")}}
+									</time>
+								</div>
+								<div class="comment-text">
+									{{item.comment_text|raw}}
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		{% endif %}
+	{% endif %}
+</div>
+<!-- ## Yorum Blok Sonu -->

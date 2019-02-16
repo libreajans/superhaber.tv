@@ -1,0 +1,60 @@
+ {% include 'block/block_reklam.twig' with {type : 'cat_masthead_infinity', cat_slug:cat_url_slug[content.content_cat] }%}
+
+<div class="detail-container">
+	<article class="detail-content">
+
+		{% include 'block/block_detail_author.twig' %}
+
+		<h1 class="detail-title">
+			{{content.content_title}}
+			{% if admin == 1 %}
+				<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+		</h1>
+		<h2 class="detail-description hideMe">{{content.content_desc|raw}}</h2>
+		<div class="detail-location">
+			{% if admin == 1 %}
+				<span class="dct"><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</span>
+			{% endif %}
+			<span class="dct"><a href="{{LINK_AUTHOR}}" title="Yazarlar"> <i class="icon">&#xe803;</i> Yazarlar </a></span>
+			<span><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y H:i")}}</time></span>
+		</div>
+		<div id="content_{{content.content_id}}">
+			{% include 'block/block_detail_share.twig' %}
+
+			<div class="detail-text">
+				{{content_with_smilar|raw}}
+			</div>
+
+			{% include 'block/block_detail_tags.twig' %}
+			{% include 'block/block_detail_comment.twig' %}
+		</div>
+	</article>
+	<aside class="detail-right">
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_2', cat_slug:cat_url_slug[content.content_cat] }%}
+
+		{% if content_benzer_list|length > 0 %}
+			<div class="detail-article-similar-post">
+				<div class="detail-block-title"><i class="icon">&#xe814;</i> Diğer Yazıları</div>
+				<ul class="detail-article-similar-post-list">
+					{% for item in content_benzer_list %}
+						<li>
+							<a href="{{item.content_url}}" title="{{item.content_title}}">
+								<div>
+									{{item.content_title|raw}}
+								</div>
+								<time class="published-date"><i class="icon">&#xe82b;</i> {{item.content_date}} </time>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_sag_3', cat_slug:cat_url_slug[content.content_cat] }%}
+
+	</aside>
+</div>
+
+{% include 'block/block_detail_loader.twig' %}

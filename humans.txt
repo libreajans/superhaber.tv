@@ -1,0 +1,25 @@
+/* TEAM */
+	Owner:SuperHaber
+	Contact: info [at] superhaber.tv
+	Twitter: @superhabertv
+	From:Istanbul, Turkey
+
+	Web Programmer: Sabri Unal
+	Twitter: @gazisabriunal
+	From:Istanbul, Turkey
+	IDE: Kate, FileZilla, Linux
+
+	UI developer: Halil Kilicarslan
+	Twitter: @__hk7
+	From:Istanbul, Turkey
+	IDE: SublimeText, FileZilla, Windows
+
+	Web designer: Zekeriya Pehlivan
+	Twitter: @zekpehlivan
+	From:Istanbul, Turkey
+	IDE: SublimeText, FileZilla, Mac, Photoshop
+
+/* SITE */
+	Last update: Daily
+	Language: Turkish
+	Doctype:HTML5

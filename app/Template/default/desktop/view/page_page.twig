@@ -1,0 +1,22 @@
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "item": { "@id": "{{LINK_INDEX}}", "name": "Ana Sayfa"}},
+		{ "@type": "ListItem", "position": 2, "item": { "@id": "{{page_url[id]}}", "name": "{{page_name[id]}}" } }
+	]
+}
+</script>
+
+<main class="page-container">
+	<div class="col-8">
+		<div class="page-title">
+			{% if admin == 1 %}
+				<a title="Sayfayı Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+			<h1>{{content.page_title}}</h1>
+		</div>
+		<div class="page-body"> {{content.page_text|raw}}</div>
+	</div>
+</main>

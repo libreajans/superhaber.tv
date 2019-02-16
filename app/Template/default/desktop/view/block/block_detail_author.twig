@@ -1,0 +1,53 @@
+<div class="detail-author-profile">
+	<figure class="detail-author-profile-image">
+		<img
+			src="{{G_IMGLINK_APP}}lazy.png"
+			data-src="{{author_info.author_image_url}}"
+			alt="{{author_info.author_name}}"
+			width="140" height="140"/>
+		<noscript>
+		<img
+			src="{{author_info.author_image_url}}"
+			alt="{{author_info.author_name}}"
+			width="140" height="140"/>
+		</noscript>
+	</figure>
+	<div class="detail-author-profile-title">
+		{{author_info.author_name}}
+	</div>
+	{% if author_info.author_facebook != "" or  author_info.author_twitter != "" or author_info.author_instagram != "" or author_info.author_email != ""%}
+		<ul class="detail-author-profile-social">
+			{% if author_info.author_facebook != "" %}
+			<li>
+				<a class="facebook" target="_blank" rel="external noopener noreferrer" href="{{author_info.author_facebook}}">
+					<i class="icon">&#xf09a;</i>
+				</a>
+			</li>
+			{% endif %}
+
+			{% if author_info.author_twitter != "" %}
+			<li>
+				<a class="twitter" target="_blank" rel="external noopener noreferrer" href="{{author_info.author_twitter}}">
+					<i class="icon">&#xf099;</i>
+				</a>
+			</li>
+			{% endif %}
+
+			{% if author_info.author_instagram != "" %}
+			<li>
+				<a class="instagram" target="_blank" rel="external noopener noreferrer" href="{{author_info.author_instagram}}">
+					<i class="icon">&#xf0d5;</i>
+				</a>
+			</li>
+			{% endif %}
+
+			{% if author_info.author_email != "" %}
+			<li>
+				<a class="email" target="_blank" rel="external noopener noreferrer" href="mailto:{{author_info.author_email}}">
+					<i class="icon">&#xf0e0;</i>
+				</a>
+			</li>
+			{% endif %}
+		</ul>
+	{% endif %}
+</div>

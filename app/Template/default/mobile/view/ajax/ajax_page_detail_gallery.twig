@@ -1,0 +1,75 @@
+
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead' }%}
+<div class="detail-gallery-container">
+	<article>
+		{% if content.content_title_outside != '' %}
+			<div class="ustbaslik"><div class="reddot"></div>{{content.content_title_outside}}</div>
+		{% endif %}
+		<h1 atiUrl="{{site_canonical}}" atiTitle="{{content.content_title_outside}}" class="atiNG detail-gallery-title">
+			{{content.content_title}}
+			{% if admin == 1 %}
+				<a title="İçeriği Düzenle" style="float:right;" href="{{link_edit}}">#</a>
+			{% endif %}
+		</h1>
+		<h2 class="detail-gallery-desc">{{content.content_desc|raw}}</h2>
+		<div class="detail-content-extra">
+			<ul>
+				<li><time><i class="icon">&#xe82b;</i> {{content.content_time|date("d.m.Y H:i")}}</time></li>
+				<li><a href="{{cat_url[content.content_cat]}}" title="{{cat_name[content.content_cat]}}"><i class="icon">&#xf105;</i> {{cat_name[content.content_cat]}}</a> </li>
+				{% if admin == 1 %}
+					<li><i class="icon">&#xe812;</i> {{content.content_view|number_format}}</li>
+				{% endif %}
+			</ul>
+		</div>
+
+		{% include 'block/block_detail_share.twig' %}
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_manset_alti' }%}
+
+		<figure class="detail-content-image">
+			<img
+				src="{{content.content_image_url}}"
+				alt="{{content.content_title}}"
+				width="100%" height="auto"
+			/>
+		</figure>
+
+		{% include 'block/block_reklam.twig' with {type : 'cat_detay' }%}
+
+		<ul class="detail-gallery-list">
+			{% for k, item in gallery_data %}
+				<li
+					id="{{k+1}}"
+					atiUrl="{{content.content_url}}#{{k+1}}"
+					atiTitle="{{content.content_title|raw}} - {{k+1}}"
+					class="atiNG">
+					<div class="detail-gallery-list-count">
+						{{k+1}} / {{gallery_data_adet}}
+					</div>
+					<div class="detail-gallery-list-text">
+						{{item.photo_text|raw}}
+					</div>
+					<figure class="detail-gallery-list-image">
+						<img
+							class="g1"
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{item.photo_image_url}}"
+							width="{{item.photo_width}}" height="{{item.photo_height}}"
+							alt="{{item.photo_text|striptags}}"
+							title="{{content.content_title}} - {{k+1}}. resim"/>
+						<noscript>
+						<img
+							class="g1"
+							src="{{item.photo_image_url}}"
+							width="{{item.photo_width}}" height="{{item.photo_height}}"
+							alt="{{item.photo_text|striptags}}"
+							title="{{content.content_title}} - {{k+1}}. resim"/>
+						</noscript>
+					</figure>
+				</li>
+			{% endfor %}
+		</ul>
+	</article>
+</div>
+
+{% include 'block/block_detail_loader.twig' %}

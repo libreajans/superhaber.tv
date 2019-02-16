@@ -1,0 +1,107 @@
+{% include 'block/block_reklam.twig' with {type : 'define_mobile_index' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_masthead' }%}
+{% include 'block/block_reklam.twig' with {type : 'cat_pageskin' }%}
+{% if key == "" %}
+	<div class="authors-container">
+		<div class="mobile-list-title {{color}}">Yazarlar</div>
+		<ul class="all-authors-list">
+			{% for item in author_content %}
+				<li>
+					<a href="{{item.author_url}}" title="{{item.author_name}}">
+						<figure class="all-authors-list-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{item.author_image_url}}"
+								alt="{{item.author_name}}"
+								width="120" height="120"/>
+							<noscript>
+							<img
+								src="{{item.author_image_url}}"
+								alt="{{item.author_name}}"
+								width="120" height="120"/>
+							</noscript>
+						</figure>
+						<div class="all-authors-list-title">
+							{{item.author_name}}
+						</div>
+					</a>
+					<div class="all-authors-list-post">
+						<a href="{{item.content_url}}">{{item.content_title|raw}}</a>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% else %}
+	{% include 'block/block_reklam.twig' with {type : 'cat_manset_alti' }%}
+	<div class="authors-container">
+		<div class="mobile-list-title {{color}}">Yazar Profili</div>
+		<div class="author-profile">
+			<figure class="author-profile-image">
+				<img
+					src="{{G_IMGLINK_APP}}lazy.png"
+					data-src="{{author_info.author_image_url}}"
+					alt="{{author_info.author_name}}"
+					width="120" height="120"/>
+				<noscript>
+				<img
+					src="{{author_info.author_image_url}}"
+					alt="{{author_info.author_name}}"
+					width="120" height="120"/>
+				</noscript>
+			</figure>
+			<div class="author-profile-title">
+				{{author_info.author_name}}
+			</div>
+			<ul class="author-profile-social">
+				{% if author_info.author_facebook != "" %}
+					<li>
+						<a class="facebook" rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_facebook}}">
+							<i class="icon">&#xf09a;</i>
+						</a>
+					</li>
+			 	{% endif %}
+				{% if author_info.author_twitter != "" %}
+					<li>
+						<a class="twitter" rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_twitter}}">
+							<i class="icon">&#xf099;</i>
+						</a>
+					</li>
+				{% endif %}
+				{% if author_info.author_instagram != "" %}
+					<li>
+						<a class="instagram" rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_instagram}}">
+							<i class="icon">&#xf16d;</i>
+						</a>
+					</li>
+				{% endif %}
+				{% if author_info.author_email != "" %}
+					<li>
+						<a class="email" rel="external nofollow" target="_blank" rel="noopener noreferrer" href="{{author_info.author_email}}">
+							<i class="icon">&#xf0e0;</i>
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+
+		<div class="author-profile-post">
+			<div class="mobile-list-title cat-110">Yazıları</div>
+			<ul class="author-profile-post-list">
+				{% for item in content_list %}
+					<li>
+						<a
+							href="{{item.content_url}}"
+							title="{{item.content_title|striptags}}">
+							<span>
+								<i class="icon">&#xe82b;</i> {{item.content_date}}
+							</span>
+							{{item.content_title|striptags}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endif %}
+

@@ -1,0 +1,162 @@
+{% if cat_slug == 'gundem' %}
+	{%  set pageID = 848633  %}
+{% elseif cat_slug == 'seyahat' %}
+	{%  set pageID = 848635  %}
+{% elseif cat_slug == 'ekonomi' %}
+	{%  set pageID = 848642  %}
+{% elseif cat_slug == 'magazin' %}
+	{%  set pageID = 848645  %}
+{% elseif cat_slug == 'spor' %}
+	{%  set pageID = 848646  %}
+{% elseif cat_slug == 'authors' %}
+	{%  set pageID = 848647  %}
+{% elseif cat_slug == 'gallery' %}
+	{%  set pageID = 848648  %}
+{% elseif cat_slug == 'video' %}
+	{%  set pageID = 848649  %}
+{% else %}
+	{%  set pageID = 848651  %}
+{% endif %}
+{% if type == "define_mobile_index" %}
+	<script type="application/javascript" src="//ced.sascdn.com/tag/1543/smart.js" async></script>
+	<script type="application/javascript">
+		var sas = sas || {};
+		sas.cmd = sas.cmd || [];
+		sas.cmd.push(function() {
+			sas.setup({ networkid: 1543, domain: "//www3.smartadserver.com", async: true });
+		});
+		sas.cmd.push(function() {
+			sas.call("onecall", {
+				siteId: 94371,
+				pageId: 848632,
+				formatId: "35072,35067,35068,47436,35560,35087",
+				target: ''
+			});
+		});
+	</script>
+{% endif %}
+
+{% if type == "define_cat" %}
+	<script type="application/javascript" src="//ced.sascdn.com/tag/1543/smart.js" async></script>
+	<script type="application/javascript">
+		var sas = sas || {};
+		sas.cmd = sas.cmd || [];
+		sas.cmd.push(function() {
+			sas.setup({ networkid: 1543, domain: "//www3.smartadserver.com", async: true });
+		});
+		sas.cmd.push(function() {
+			sas.call("onecall", {
+				siteId: 94371,
+				pageId: {{pageID}},
+				formatId: "35072,35067,35068,35560,35087",
+				target: ''
+			});
+		});
+	</script>
+{% endif %}
+
+{% if ads_status == 1 %}
+
+
+	{% if type == "anasayfa_pageskin" %}
+		<div class="reklam" id="sas_35072"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35072");  // Format : 320x100 320x100
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "anasayfa_masthead" %}
+		<div class="reklam" id="sas_35560" style="margin:10px auto 10px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35560");  // Format : 320x100 320x100
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "anasayfa_surmanset_alti" %}
+		<div class="reklam" id="sas_35067" style="margin:10px auto 10px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35067");
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "anasayfa_roportaj_ustu" %}
+		<div class="reklam" id="sas_35068" style="margin:10px auto 10px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35068");
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "anasayfa_galeri_alti" %}
+		<div class="reklam" id="sas_47436" style="margin:10px auto 10px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("47436");
+			});
+		</script>
+	{% endif %}
+
+
+	{% if type == "anasayfa_footer_ustu" %}
+		<div class="reklam" id="sas_35087" style="margin:5px auto 5px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35087");
+			});
+		</script>
+	{% endif %}
+
+
+	{% if type == "cat_pageskin" %}
+		<div class="reklam" id="sas_35072"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35072");
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "cat_masthead" %}
+		<div class="reklam" id="sas_35560" style="margin:5px auto 5px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35560");
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "cat_manset_alti" %}
+		<div class="reklam" id="sas_35067" style="margin:5px auto 5px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35067");
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "cat_detay" %}
+		<div class="reklam" id="sas_35068" style="margin:5px auto 5px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35068");
+			});
+		</script>
+	{% endif %}
+
+	{% if type == "footer_ustu" %}
+		<div class="reklam" id="sas_35087" style="margin:5px auto 5px auto; text-align: center"></div>
+		<script type="application/javascript">
+			sas.cmd.push(function() {
+				sas.render("35087");
+			});
+		</script>
+	{% endif %}
+
+{% endif %}

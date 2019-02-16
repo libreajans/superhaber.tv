@@ -1,0 +1,29 @@
+{% if content_benzer_list|length > 0 %}
+	<div class="aside-title">Öne Çıkanlar</div>
+	<ul class="popular-news-list">
+		{% for item in content_benzer_list %}
+			<li>
+				<a
+					target="_blank" rel="noopener noreferrer"
+					href="{{item.content_url}}" title="{{item.content_title}}">
+					<figure class="popular-news-list-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="300" height="176"/>
+						<noscript>
+						<img
+							src="{{item.content_thumb_url}}"
+							alt="{{item.content_title}}"
+							width="300" height="176"/>
+						</noscript>
+					</figure>
+					<div class="popular-news-list-title">
+						{{item.content_title|raw}}
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}
